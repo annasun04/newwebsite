@@ -95,7 +95,7 @@ const Portfolio = () => {
               {/* CHANGED: Added Typewriter component here */}
               {/* CHANGED: Added pb-4 (padding bottom) to give the 'g' descender space */}
               <span className="block pb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 animate-gradient-x">
-                <Typewriter text="Wendy Sun" delay={400} />
+                <Typewriter text="Anna Sun" delay={400} />
               </span>
             </h1>
           </div>
