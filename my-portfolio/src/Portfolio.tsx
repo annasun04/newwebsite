@@ -245,6 +245,13 @@ const Portfolio = () => {
                 <ul className="space-y-8 border-l border-white/10 ml-1 pl-8">
                   <li className="relative">
                     <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-indigo-500"></span>
+                    <p className="text-white font-bold">Software Engineer Co-op</p>
+                    <p className="text-sm text-slate-500 mb-2">IBM • Feb 2026 - Present</p>
+                    <p className="text-slate-400 text-sm"></p>
+                  </li>
+
+                  <li className="relative">
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-indigo-500"></span>
                     <p className="text-white font-bold">Software Engineer Intern</p>
                     <p className="text-sm text-slate-500 mb-2">IBM • May 2025 - Aug 2025</p>
                     <p className="text-slate-400 text-sm">Built an AI agent and full-stack RAG system powering multilingual code generation and authentication workflows, cutting developer turnaround time by 82% and supporting 500+ monthly queries.</p>
@@ -490,10 +497,10 @@ const Portfolio = () => {
               Let's build something <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">extraordinary.</span>
             </h2>
-            <div className="flex justify-center gap-6">
-              <SocialButton icon={<Mail />} href="mailto:@gmail.com" label="Email" />
-              <SocialButton icon={<Github />} href="https://github.com/" label="GitHub" />
-              <SocialButton icon={<Linkedin />} href="https://www.linkedin.com/in/" label="LinkedIn" />
+            <div className="flex **justify-center** gap-6">
+              <SocialButton icon={<Mail />} href="mailto:asun.wisc@gmail.com" label="Email" />
+              <SocialButton icon={<Github />} href="https://github.com/annasun04" label="GitHub" />
+              <SocialButton icon={<Linkedin />} href="https://www.linkedin.com/in/annasun04/" label="LinkedIn" />
             </div>
           </ScrollReveal>
         </section>
