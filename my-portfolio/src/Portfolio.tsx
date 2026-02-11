@@ -49,7 +49,7 @@ const Portfolio = () => {
         <div 
           className="absolute inset-0 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(800px at ${mousePosition.x}px ${mousePosition.y}px, rgba(118, 129, 227, 0.05), transparent 90%)`
+            background: `radial-gradient(700px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 0, 0, 0.60), transparent 90%)`
           }}
         />
 
@@ -126,7 +126,7 @@ const Portfolio = () => {
       </header>
 
       {/* Main Content - Added overflow-x-hidden here to prevent horizontal scrollbars from tilt cards */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 space-y-40 pb-40 overflow-x-hidden **text-center**">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 space-y-40 pb-40 overflow-x-hidden text-center">
         {/* Tech Stack / Stats */}
         <ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-sm **max-w-5xl mx-auto**">
@@ -152,8 +152,8 @@ const Portfolio = () => {
                 icon: <Sparkles className="text-yellow-400" />,
               },
             ].map((skill, i) => (
-              <div key={i} className="space-y-2 text-center **md:text-left**">
-                <div className="flex items-center **justify-center md:justify-start** gap-2 mb-2">
+              <div key={i} className="space-y-2 text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                   {skill.icon}
                   <span className="font-bold text-white">{skill.label}</span>
                 </div>
@@ -166,12 +166,12 @@ const Portfolio = () => {
         {/* Work Section */}
         <section id="work">
           <ScrollReveal>
-            <div className="flex items-end **justify-center** mb-16">
+            <div className="flex items-end justify-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white">Selected Work</h2>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 **max-w-6xl mx-auto**">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <TiltCard 
               title="IPO Momentum Trading System"
               category="Markets"
@@ -308,7 +308,7 @@ const Portfolio = () => {
         </section>
 
         {/* Events Section */}
-        <section id="events" className="**max-w-6xl mx-auto**">
+        <section id="events" className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="grid md:grid-cols-2 gap-12 items-start">
               
@@ -497,7 +497,7 @@ const Portfolio = () => {
               Let's build something <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">extraordinary.</span>
             </h2>
-            <div className="flex **justify-center** gap-6">
+            <div className="flex justify-center gap-6 w-full">
               <SocialButton icon={<Mail />} href="mailto:asun.wisc@gmail.com" label="Email" />
               <SocialButton icon={<Github />} href="https://github.com/annasun04" label="GitHub" />
               <SocialButton icon={<Linkedin />} href="https://www.linkedin.com/in/annasun04/" label="LinkedIn" />
@@ -507,7 +507,7 @@ const Portfolio = () => {
       </main>
 
       <footer className="py-8 text-center text-slate-600 text-sm relative z-10">
-        <p>© 2025 Wendy Sun. Crafted with React & Tailwind.</p>
+        <p>© 2026 Anna Sun. Crafted with React & Tailwind.</p>
       </footer>
 
       {/* Custom Animations */}
