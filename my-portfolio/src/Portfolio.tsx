@@ -106,7 +106,7 @@ const Portfolio = () => {
           
           <p className="max-w-2xl text-slate-400 text-lg md:text-xl leading-relaxed">
             I build end-to-end technical solutions spanning <span className="text-indigo-300">AI agents, RAG systems, big data infrastructure, and systems programming</span>, 
-            with a strong interest in applying these tools to <span className="text-indigo-300">finance</span> and <span className="text-indigo-300">large-scale decision-making</span>.
+            with a strong interest in applying these tools to <span className="text-indigo-300">finance</span> and <span className="text-indigo-300">large-scale systems</span>.
           </p>
           
           <div className="pt-8 flex flex-wrap gap-4">
@@ -222,15 +222,13 @@ const Portfolio = () => {
                 </div>
                 <p className="text-indigo-400 font-mono mb-6">Who am I?</p>
                 <h3 className="text-3xl font-bold text-white mb-6">
-                  Design-driven Engineer based in Madison.
+                  Software Engineer based in Madison.
                 </h3>
                 <p className="text-slate-400 leading-relaxed mb-6">
-                  I’m a Computer Science and Statistics student at UW–Madison focused on building and maintaining intelligent systems. My journey started in web development which evolved into an interest in systems and machine learning.
+                  I’m a Computer Science and Statistics student at UW–Madison focused on building and maintaining systems. My journey started in web development and evolved into an interest towards systems and machine learning.
                   
                 </p>
-                <p className="text-slate-400 leading-relaxed">
-                  When I'm not coding, you can find me working out, drinking a caramel latte, playing sports or exploring new projects.
-                </p>
+                
               </div>
             </div>
           </ScrollReveal>
