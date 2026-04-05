@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'; 
+import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, ArrowUpRight, Code2, Palette, Layers, ChevronDown, Sparkles } from 'lucide-react';
 import citadel from "./assets/citadel_event_photo.jpg";
 import wacm from "./assets/wacm_madhacks_2025.jpg";
@@ -33,23 +34,23 @@ const Portfolio = () => {
 
   return (
     // CHANGED: min-h-[100dvh] handles mobile browsers better than min-h-screen
-    <div className="relative min-h-[100dvh] text-slate-300 font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e]">
       
       {/* Solid base background */}
-      <div className="fixed inset-0 bg-[#0a0a0a] z-0"></div>
+      <div className="fixed inset-0 bg-[#1a3016] z-0"></div>
 
       {/* Dynamic Animated Background - CHANGED: 'fixed' ensures it covers the full viewport always */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none w-full h-full">
         {/* Blobs */}
-        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vw] bg-purple-900/20 rounded-full blur-[100px] animate-blob mix-blend-screen"></div>
-        <div className="absolute top-[-20%] right-[-20%] w-[55vw] h-[55vw] bg-indigo-900/20 rounded-full blur-[100px] animate-blob animation-delay-2000 mix-blend-screen"></div>
-        <div className="absolute bottom-[-30%] left-[15%] w-[70vw] h-[70vw] bg-blue-900/20 rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-screen"></div>
+        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vw] bg-[#2a4822] rounded-full blur-[100px] animate-blob mix-blend-screen"></div>
+        <div className="absolute top-[-20%] right-[-20%] w-[55vw] h-[55vw] bg-[#3e6034] rounded-full blur-[100px] animate-blob animation-delay-2000 mix-blend-screen"></div>
+        <div className="absolute bottom-[-30%] left-[15%] w-[70vw] h-[70vw] bg-[#0e1e0c] rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-screen"></div>
 
         {/* Mouse spotlight */}
         <div 
           className="absolute inset-0 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(700px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 0, 0, 0.60), transparent 90%)`
+            background: `radial-gradient(700px at ${mousePosition.x}px ${mousePosition.y}px, rgba(86, 149, 81, 0.91), transparent 90%)`
           }}
         />
 
@@ -61,24 +62,27 @@ const Portfolio = () => {
       <nav className={`fixed w-full z-50 transition-all duration-500 ${scrollY > 50 ? 'bg-black/40 backdrop-blur-xl border-b border-white/5 py-4' : 'py-6 bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="text-2xl font-bold tracking-tight cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 group-hover:to-purple-400 transition-all duration-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1e1610] to-[#1e1610] group-hover:to-[#eef2ec] transition-all duration-300">
               
             </span>
           </div>
-          <div className="flex gap-8 text-sm font-medium">
+          <div className="flex gap-8 text-sm font-medium items-center">
             {['About', 'Work', 'Contact'].map((item) => (
               <button 
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())} 
                 
                 
-                className="relative text-slate-400 hover:text-white transition-colors py-1 bg-transparent"
+                className="relative text-[#c4d4b8] hover:text-white transition-colors py-1 bg-transparent"
 
               >
                 {item}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1e1610] transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
+            <Link to="/about" className="relative text-[#c4d4b8] hover:text-white transition-colors py-1 bg-transparent">
+              Blog
+            </Link>
           </div>
         </div>
       </nav>
@@ -94,23 +98,27 @@ const Portfolio = () => {
               {/*<span className="block mb-2">Software</span>*/}
               {/* CHANGED: Added Typewriter component here */}
               {/* CHANGED: Added pb-4 (padding bottom) to give the 'g' descender space */}
-              <span className="block pb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 animate-gradient-x">
-                <Typewriter text="Anna Sun" delay={400} />
+              <span className="block pb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#5a8050] via-[#FFFFFF] to-[#5a8050] animate-gradient-x drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
+                <Typewriter text="Anna Sun" delay={200} />
               </span>
             </h1>
           </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-indigo-400 text-sm font-medium animate-fade-in-up">
-            <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#c4d4b8] text-sm font-medium animate-fade-in-up animate-pulse">
+            <span className="w-2 h-2 rounded-full bg-[#c4d4b8] animate-pulse"></span>
             Software Engineer
           </div>
           
-          <p className="max-w-2xl text-slate-400 text-lg md:text-xl leading-relaxed">
-            I build end-to-end technical solutions spanning <span className="text-indigo-300">AI agents, RAG systems, big data infrastructure, and systems programming</span>, 
-            with a strong interest in applying these tools to <span className="text-indigo-300">finance</span> and <span className="text-indigo-300">large-scale systems</span>.
+          <p className="max-w-2xl text-[#8aac78] text-lg md:text-xl leading-relaxed">
+            I build end-to-end technical solutions spanning <span className="text-[#eef2ec]">data infrastructure, AI, and systems programming</span>, 
+            with a focus on <span className="text-[#eef2ec]">scalability</span>.
+            <br></br>
+            <br></br>
+            You can find me <span className="text-[#eef2ec]">bouldering (currently working towards v7)</span>, playing <span className="text-[#eef2ec]">pickleball</span>, or <span className="text-[#eef2ec]">reading</span> in my free time.
+                  
           </p>
           
           <div className="pt-8 flex flex-wrap gap-4">
-            <button onClick={() => scrollToSection('work')} className="px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+            <button onClick={() => scrollToSection('work')} className="px-8 py-4 bg-[#c4d4b8] text-black rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
               View Projects
               <ArrowUpRight size={20} />
             </button>
@@ -134,28 +142,28 @@ const Portfolio = () => {
               {
                 label: 'Languages',
                 items: 'Python (Pandas, NumPy, PyTorch), Java, C++, SQL, C, JavaScript, R',
-                icon: <Code2 className="text-indigo-400" />,
+                icon: <Code2 className="text-[#9880b4]" />,
               },
               {
                 label: 'Tools & Frameworks',
                 items: 'React, Docker, Kubernetes, Node.js, GitHub, Bash, React Native, REST APIs',
-                icon: <Layers className="text-cyan-400" />,
+                icon: <Layers className="text-[#d4874c]" />,
               },
               {
                 label: 'Systems',
                 items: 'Spark, Kafka, Hadoop, Cassandra',
-                icon: <Palette className="text-pink-400" />,
+                icon: <Palette className="text-[#d88878]" />,
               },
               {
                 label: 'Other Skills',
                 items: 'Team Collaboration, Public Speaking, Project Management, Leadership',
-                icon: <Sparkles className="text-yellow-400" />,
+                icon: <Sparkles className="text-[#708898]" />,
               },
             ].map((skill, i) => (
               <div key={i} className="space-y-2 text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                   {skill.icon}
-                  <span className="font-bold text-white">{skill.label}</span>
+                  <span className="font-bold text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">{skill.label}</span>
                 </div>
                 <p className="text-sm text-slate-400 font-mono">{skill.items}</p>
               </div>
@@ -167,7 +175,7 @@ const Portfolio = () => {
         <section id="work">
           <ScrollReveal>
             <div className="flex items-end justify-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-white">Selected Work</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Selected Work</h2>
             </div>
           </ScrollReveal>
 
@@ -176,28 +184,28 @@ const Portfolio = () => {
               title="IPO Momentum Trading System"
               category="Markets"
               description="Automated IPO momentum trading system using moving-average crossovers, RSI, and statistical volatility models. Includes risk-managed execution, options-based probability models, and a Markowitz-style portfolio optimizer built with Julia + JuMP."
-              color="from-pink-500/20 to-rose-500/20"
+              color="from-[#1a3016]/90 to-[#0e1e0c]"
               tags={['Python', 'Julia', 'JuMP']}
             />
              <TiltCard 
               title="RAG System"
               category="AI"
               description="AI assistant powered by a full-stack RAG pipeline using Granite, LLaMA, and Mistral models. Provides instant multilingual code samples and authentication flows, reducing developer onboarding time by 82% for enterprise teams."
-              color="from-indigo-500/20 to-blue-500/20"
+              color="from-[#1a3016]/90 to-[#0e1e0c]"
               tags={['RAG', 'LLMs', 'React', 'AI Agents']}
             />
             <TiltCard 
               title="Cloud Data Pipeline"
               category="Data"
               description="End-to-end ETL pipeline on GCP ingesting 2,000+ school records with geospatial joins. Automated with Dataform, BigQuery spatial functions, containerized services, and scalable orchestration across VMs and GCS."
-              color="from-indigo-500/20 to-blue-500/20"
+              color="from-[#1a3016]/90 to-[#0e1e0c]"
               tags={['Docker', 'SQL', 'GCP', 'BigQuery', 'ETL']}
             />
             <TiltCard 
               title="Bit by Bit"
               category="Systems"
               description="High-performance, multi-threaded data processing engine inspired by Apache Spark. Implements DAG scheduling, parallel execution, custom operators, and a Unix shell (wsh) supporting pipes, process management, and command parsing."
-              color="from-cyan-500/20 to-teal-500/20"
+              color="from-[#1a3016]/90 to-[#0e1e0c]"
               tags={['C', 'Concurrency', 'DAG', 'Systems Programming']}
             />
             
@@ -205,7 +213,7 @@ const Portfolio = () => {
               title="Flappy Bird"
               category="ML"
               description="Evolutionary neural network agent trained via genetic algorithms to autonomously play Flappy Bird. Uses population-based mutation, fitness evaluation, and iterative selection for improving play over generations."
-              color="from-indigo-500/20 to-blue-500/20"
+              color="from-[#1a3016]/90 to-[#0e1e0c]"
               tags={['Python', 'Neural Networks', 'NumPy', 'Genetic Algorithms']}
             />
           </div>
@@ -215,18 +223,22 @@ const Portfolio = () => {
         <section id="about" className="grid md:grid-cols-2 gap-16 items-center">
           <ScrollReveal>
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-              <div className="relative bg-slate-900 border border-white/10 rounded-2xl p-8 md:p-12 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-500 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+              <div className="relative bg-black border border-white/10 rounded-2xl p-8 md:p-12 overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-20">
                   <Code2 size={120} />
                 </div>
-                <p className="text-indigo-400 font-mono mb-6">Who am I?</p>
-                <h3 className="text-3xl font-bold text-white mb-6">
+                <p className="text-[#c4d4b8] font-mono mb-6">Who am I?</p>
+                <h3 className="text-3xl font-bold text-white mb-6 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
                   Software Engineer based in Madison.
                 </h3>
-                <p className="text-slate-400 leading-relaxed mb-6">
-                  I’m a Computer Science and Statistics student at UW–Madison focused on building and maintaining systems. My journey started in web development and evolved into an interest towards systems and machine learning.
-                  
+                <p className="text-white leading-relaxed mb-6">
+                  I’m a Computer Science and Statistics student at UW–Madison focused on building and maintaining systems. My journey started in web development and has evolved into an interest in databases and systems. 
+                  <br>
+                  </br>
+                  <br>
+                  </br>
+                  Originally from Minnesota, I've always enjoyed challenges (whether academic or not) which has allowed me to explore various sports, activities, and overcome some tough obstacles. My favorite quote has been "You miss 100% of the shots you don't take".
                 </p>
                 
               </div>
@@ -236,68 +248,69 @@ const Portfolio = () => {
           <ScrollReveal delay={200}>
             <div className="space-y-8">
               <div>
-                <h4 className="text-white font-bold mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                <h1 className="text-white font-bold mb-4 flex items-center gap-2 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
+                  {/*<span className="w-2 h-2 bg-[#fde68a] rounded-full"></span>*/}
                   Experience
-                </h4>
+                </h1>
                 <ul className="space-y-8 border-l border-white/10 ml-1 pl-8">
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-indigo-500"></span>
-                    <p className="text-white font-bold">Software Engineer Co-op</p>
-                    <p className="text-sm text-slate-500 mb-2">IBM • Feb 2026 - Present</p>
-                    <p className="text-slate-400 text-sm"></p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#f0f4ee] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Software Engineer Co-op</p>
+                    <p className="text-sm text-white mb-2">IBM • Feb 2026 - Present</p>
+                    <p className="text-white/85 mb-5 text-sm">Diagnosed and resolved provisioning/PACS database sync defects in an MVP digital badge microservice
+across multi-region datacenters for 2,500+ active users scaling to 300,000+ IBM employees globally</p>
                   </li>
 
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-indigo-500"></span>
-                    <p className="text-white font-bold">Software Engineer Intern</p>
-                    <p className="text-sm text-slate-500 mb-2">IBM • May 2025 - Aug 2025</p>
-                    <p className="text-slate-400 text-sm">Built an AI agent and full-stack RAG system powering multilingual code generation and authentication workflows, cutting developer turnaround time by 82% and supporting 500+ monthly queries.</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#dce8d8] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Software Engineer Intern</p>
+                    <p className="text-sm text-white mb-2">IBM • May 2025 - Aug 2025</p>
+                    <p className="text-white/85 mb-5 text-sm">Built an AI agent and full-stack RAG system powering multilingual code generation and authentication workflows, cutting developer turnaround time by 82% and supporting 500+ monthly queries.</p>
                   </li>
 
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600"></span>
-                    <p className="text-white font-bold">Undergraduate Teaching Assistant</p>
-                    <p className="text-sm text-slate-500 mb-2">CS • Sep 2024 - Present</p>
-                    <p className="text-slate-400 text-sm">Teach and mentor 100+ students in Data Structures and Java, helping them understand algorithmic problem-solving and core CS fundamentals.</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#c0d4b8] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Undergraduate Teaching Assistant</p>
+                    <p className="text-sm text-white mb-2">CS • Sep 2024 - Present</p>
+                    <p className="text-white/85 mb-5 text-sm">Teach and mentor 100+ students in Data Structures and Java, helping them understand algorithmic problem-solving and core CS fundamentals.</p>
                   </li>
 
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600"></span>
-                    <p className="text-white font-bold">Undergraduate Researcher</p>
-                    <p className="text-sm text-slate-500 mb-2">Theory • Jan 2025 - May 2025</p>
-                    <p className="text-slate-400 text-sm">Worked with Professor Sandeep Silwal on density estimation algorithms using multiplicative weights, studying regret minimization and PAC learning theory.</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#a0bc98] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Undergraduate Researcher</p>
+                    <p className="text-sm text-white mb-2">Theory • Jan 2025 - May 2025</p>
+                    <p className="text-white/85 mb-5 text-sm">Worked with Professor Sandeep Silwal on density estimation algorithms using multiplicative weights, studying regret minimization and PAC learning theory.</p>
                   </li>
 
                    <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600"></span>
-                    <p className="text-white font-bold">Lab Coordinator</p>
-                    <p className="text-sm text-slate-500 mb-2">Undergraduate Projects Lab • Jan 2024 - Present</p>
-                    <p className="text-slate-400 text-sm">Lead technical mentorship for student projects, advise on architecture and tech stacks, and organized MadHacks, one of the largest hackathons in the Midwest.</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#80a478] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Lab Coordinator</p>
+                    <p className="text-sm text-white mb-2">Undergraduate Projects Lab • Jan 2024 - Present</p>
+                    <p className="text-white/85 mb-5 text-sm">Lead technical mentorship for student projects, advise on architecture and tech stacks, and organized MadHacks, one of the largest hackathons in the Midwest.</p>
                   </li>
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600"></span>
-                    <p className="text-white font-bold">Academy of Math and Programming Fellow</p>
-                    <p className="text-sm text-slate-500 mb-2">Jane Street • Jun 2023 - Aug 2023</p>
-                    <p className="text-slate-400 text-sm">Selected from 1,500+ applicants to study combinatorics, number theory, and Python. Placed 10th in Jane Street’s trading competition using ETF and bond strategies.</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#8aac78] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Academy of Math and Programming Fellow</p>
+                    <p className="text-sm text-white mb-2">Jane Street • Jun 2023 - Aug 2023</p>
+                    <p className="text-white/85 mb-5 text-sm">Selected from 1,500+ applicants to study combinatorics, number theory, and Python. Placed 10th in Jane Street’s trading competition using ETF and bond strategies.</p>
                   </li>
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600"></span>
-                    <p className="text-white font-bold">Barista</p>
-                    <p className="text-sm text-slate-500 mb-2">Starbucks • Jun 2023 - Aug 2023</p>
-                    <p className="text-slate-400 text-sm">Learned all drink combinations (was not a coffee drinker previously).</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#6e9460] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Barista</p>
+                    <p className="text-sm text-white mb-2">Starbucks • Jun 2023 - Aug 2023</p>
+                    <p className="text-white/85 mb-5 text-sm">Learned all drink combinations (was not a coffee drinker previously).</p>
                   </li>
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600"></span>
-                    <p className="text-white font-bold">Tennis Attendant</p>
-                    <p className="text-sm text-slate-500 mb-2">RTC • Jun 2023 - Aug 2023</p>
-                    <p className="text-slate-400 text-sm">Managed facilities, coordinated scheduling.</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#547a48] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Tennis Attendant</p>
+                    <p className="text-sm text-white mb-2">RTC • Jun 2023 - Aug 2023</p>
+                    <p className="text-white/85 mb-5 text-sm">Managed facilities, coordinated scheduling.</p>
                   </li>
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600"></span>
-                    <p className="text-white font-bold">Petsitter</p>
-                    <p className="text-sm text-slate-500 mb-2">Rover • Jun 2023 - Aug 2023</p>
-                    <p className="text-slate-400 text-sm">Coordinated client communication, scheduling, and pet care.</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#3e6034] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Petsitter</p>
+                    <p className="text-sm text-white mb-2">Rover • Jun 2023 - Aug 2023</p>
+                    <p className="text-white/85 mb-5 text-sm">Coordinated client communication, scheduling, and pet care.</p>
                   </li>
                 </ul>
               </div>
@@ -312,126 +325,126 @@ const Portfolio = () => {
               
               {/* LEFT COLUMN: Timeline */}
               <div className="space-y-8">
-                <h4 className="text-white font-bold mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
-                  Events & Hackathons
-                </h4>
+                <h1 className="text-white font-bold mb-4 flex items-center gap-2 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
+                  {/*<span className="w-2 h-2 bg-[#fde68a] rounded-full"></span>*/}
+                  Events
+                </h1>
                 
                 <ul className="space-y-8 border-l border-white/10 ml-1 pl-8">
                   {/* Event Item 1 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-indigo-500 bg-indigo-800"></span>
-                    <p className="text-white font-bold">Madhacks</p>
-                    <p className="text-sm text-slate-500 mb-2">Nov 2025</p>
-                    <p className="text-slate-400 text-sm">Hackathon Organizer</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#f0f4ee] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Madhacks</p>
+                    <p className="text-sm text-white mb-2">Nov 2025</p>
+                    <p className="text-white/85 mb-5 text-sm">Hackathon Organizer</p>
                   </li>
 
                   {/* Event Item 2 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-750"></span>
-                    <p className="text-white font-bold">ICPC North Central Regionals</p>
-                    <p className="text-sm text-slate-500 mb-2">Nov 2025</p>
-                    <p className="text-slate-400 text-sm">Competitive Programmer</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#dce8d8] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">ICPC North Central Regionals</p>
+                    <p className="text-sm text-white mb-2">Nov 2025</p>
+                    <p className="text-white/85 mb-5 text-sm">Competitive Programmer</p>
                   </li>
 
                   {/* Event Item 3 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-700"></span>
-                    <p className="text-white font-bold">Grace Hopper Celebration</p>
-                    <p className="text-sm text-slate-500 mb-2">Oct 2025</p>
-                    <p className="text-slate-400 text-sm">Attendee</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#c0d4b8] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Grace Hopper Celebration</p>
+                    <p className="text-sm text-white mb-2">Oct 2025</p>
+                    {/*<p className="text-white/85 mb-5 text-sm">Attendee</p>*/}
                   </li>
 
                   {/* Event Item 4 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-650"></span>
-                    <p className="text-white font-bold">UChicago Trading Competition</p>
-                    <p className="text-sm text-slate-500 mb-2">Apr 2025</p>
-                    <p className="text-slate-400 text-sm">Algorithmic Trading and Portfolio Optimization</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#a0bc98] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">UChicago Trading Competition</p>
+                    <p className="text-sm text-white mb-2">Apr 2025</p>
+                    <p className="text-white/85 mb-5 text-sm">Algorithmic Trading and Portfolio Optimization</p>
                   </li>
                   {/* Event Item 5 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-600"></span>
-                    <p className="text-white font-bold">Prosperity</p>
-                    <p className="text-sm text-slate-500 mb-2">Apr 2025</p>
-                    <p className="text-slate-400 text-sm">IMC</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#80a478] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Prosperity III</p>
+                    <p className="text-sm text-white mb-2">Apr 2025</p>
+                    <p className="text-white/85 mb-5 text-sm">US Top 100 Algorithmic</p>
                   </li>
 
                   {/* Event Item 5 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-550"></span>
-                    <p className="text-white font-bold">Georgia Tech Trading Competition</p>
-                    <p className="text-sm text-slate-500 mb-2">Feb 2025</p>
-                    <p className="text-slate-400 text-sm">Manual and Algorithmic Trading</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#8aac78] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Georgia Tech Trading Competition</p>
+                    <p className="text-sm text-white mb-2">Feb 2025</p>
+                    <p className="text-white/85 mb-5 text-sm">Manual and Algorithmic Trading</p>
                   </li>
                   {/* Event Item 1 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-indigo-500 bg-indigo-500"></span>
-                    <p className="text-white font-bold">Madhacks</p>
-                    <p className="text-sm text-slate-500 mb-2">Nov 2024</p>
-                    <p className="text-slate-400 text-sm">Hackathon Organizer</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#6e9460] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Madhacks</p>
+                    <p className="text-sm text-white mb-2">Nov 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">Hackathon Organizer</p>
                   </li>
 
                   {/* Event Item 2 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-450"></span>
-                    <p className="text-white font-bold">ICPC North Central Regionals</p>
-                    <p className="text-sm text-slate-500 mb-2">Nov 2024</p>
-                    <p className="text-slate-400 text-sm">Competitive Programmer</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#547a48] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">ICPC North Central Regionals</p>
+                    <p className="text-sm text-white mb-2">Nov 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">Competitive Programmer</p>
                   </li>
                   {/* Event Item 7 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-400"></span>
-                    <p className="text-white font-bold">SWE National Conference</p>
-                    <p className="text-sm text-slate-500 mb-2">Oct 2024</p>
-                    <p className="text-slate-400 text-sm">Society of Women Engineers</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#3e6034] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">SWE National Conference</p>
+                    <p className="text-sm text-white mb-2">Oct 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">Society of Women Engineers</p>
                   </li>
 
                   {/* Event Item 6 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-350"></span>
-                    <p className="text-white font-bold">Northwestern Trading Competition</p>
-                    <p className="text-sm text-slate-500 mb-2">Oct 2024</p>
-                    <p className="text-slate-400 text-sm">Algorithmic Trading</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#2a4822] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Northwestern Trading Competition</p>
+                    <p className="text-sm text-white mb-2">Oct 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">Algorithmic Trading</p>
                   </li>
                   {/* Event Item 7 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-300"></span>
-                    <p className="text-white font-bold">SWE Regional Conference</p>
-                    <p className="text-sm text-slate-500 mb-2">Sep 2024</p>
-                    <p className="text-slate-400 text-sm">Society of Women Engineers</p>
-                  </li>
-
-                  {/* Event Item 7 */}
-                  <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-250"></span>
-                    <p className="text-white font-bold">Wall Street Direct</p>
-                    <p className="text-sm text-slate-500 mb-2">Jun 2024 - Aug 2024</p>
-                    <p className="text-slate-400 text-sm">Wall Street Bound Program</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#1a3016] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">SWE Regional Conference</p>
+                    <p className="text-sm text-white mb-2">Sep 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">Society of Women Engineers</p>
                   </li>
 
                   {/* Event Item 7 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-200"></span>
-                    <p className="text-white font-bold">FOCUS Chicago Trek</p>
-                    <p className="text-sm text-slate-500 mb-2">Apr 2024</p>
-                    <p className="text-slate-400 text-sm">CFA Chicago Trek</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#0a2e20] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Wall Street Direct</p>
+                    <p className="text-sm text-white mb-2">Jun 2024 - Aug 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">Wall Street Bound Program</p>
                   </li>
 
                   {/* Event Item 7 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 bg-indigo-150"></span>
-                    <p className="text-white font-bold">Fast Track to Finance</p>
-                    <p className="text-sm text-slate-500 mb-2">Feb 2024</p>
-                    <p className="text-slate-400 text-sm">Forte Foundation Conference</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#303c1a] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">FOCUS Chicago Trek</p>
+                    <p className="text-sm text-white mb-2">Apr 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">CFA Chicago Trek</p>
+                  </li>
+
+                  {/* Event Item 7 */}
+                  <li className="relative">
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#0e1e0c] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Fast Track to Finance</p>
+                    <p className="text-sm text-white mb-2">Feb 2024</p>
+                    <p className="text-white/85 mb-5 text-sm">Forte Foundation Conference</p>
                   </li>
 
                   {/* Event Item 1 */}
                   <li className="relative">
-                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-indigo-100"></span>
-                    <p className="text-white font-bold">Madhacks</p>
-                    <p className="text-sm text-slate-500 mb-2">Nov 2023</p>
-                    <p className="text-slate-400 text-sm">Hackathon Participant</p>
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#f6c14a] bg-[#101408] shadow-[0_0_10px_#e8a020]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Madhacks</p>
+                    <p className="text-sm text-white mb-2">Nov 2023</p>
+                    <p className="text-white/85 mb-5 text-sm">Hackathon Participant</p>
                   </li>
 
 
@@ -443,7 +456,7 @@ const Portfolio = () => {
               <div className="hidden md:flex flex-col gap-6 sticky top-24">
                  
                  {/* Photo 1 */}
-                 <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 hover:border-white/20 transition-all duration-500 rotate-1 hover:rotate-0 hover:shadow-2xl hover:shadow-indigo-500/20">
+                 <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 hover:border-white/20 transition-all duration-500 rotate-1 hover:rotate-0 hover:shadow-2xl hover:shadow-[0_0_40px_rgba(0,0,0,0)]">
                     <div className="absolute inset-0 z-10 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
                     <img 
                       src = {citadel}
@@ -491,9 +504,12 @@ const Portfolio = () => {
         {/* Contact CTA */}
         <section id="contact" className="text-center max-w-3xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold text-[#0e1e0c] mb-8 tracking-tight drop-shadow-[0_0_6px_rgba(255,255,255,0.3)]">
               Let's build something <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">extraordinary.</span>
+              {/*<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5a8050] via-[#FFFFFF] to-[#5a8050] animate-spin">extraordinary.</span>*/}
+              <span className="bg-gradient-to-r from-[#5a8050] via-white to-[#5a8050] bg-[length:300%_300%] animate-gradient-x bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(0,0,0,0.7)]">
+                extraordinary.
+              </span>
             </h2>
             <div className="flex justify-center gap-6 w-full">
               <SocialButton icon={<Mail />} href="mailto:asun.wisc@gmail.com" label="Email" />
@@ -504,7 +520,7 @@ const Portfolio = () => {
         </section>
       </main>
 
-      <footer className="py-8 text-center text-slate-600 text-sm relative z-10">
+      <footer className="py-8 text-center text-[#5a8050] text-sm relative z-10 drop-shadow-[0_0_6px_rgba(200,200,200,0.4)]">
         <p>© 2026 Anna Sun. Crafted with React & Tailwind.</p>
       </footer>
 
@@ -566,7 +582,7 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, speed = 150, delay = 0 })
   return (
     <span className="inline-block">
       {displayText}
-      <span className="animate-pulse text-indigo-400">|</span>
+      <span className="animate-pulse text-[#c4d4b8]">|</span>
     </span>
   );
 };
@@ -624,14 +640,14 @@ const TiltCard: React.FC<TiltCardProps> = ({ title, category, description, color
         <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
         <div className="flex justify-between items-start mb-8">
           <div className="p-3 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-colors">
-            <Layers className="text-indigo-400" size={24} />
+            <Layers className="text-[#c0d4b8]" size={24} />
           </div>
-          <span className="text-slate-400 font-mono text-sm">{category}</span>
+          <span className="text-slate-400 font-mono text-sm ">{category}</span>
         </div>
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-slate-400 text-sm mb-4">{description}</p>
-        <div className="flex flex-wrap gap-2 text-xs text-indigo-400 font-mono">
-          {tags.map((tag, i) => <span key={i} className="px-2 py-1 bg-white/5 rounded">{tag}</span>)}
+        <h3 className="text-xl font-bold text-white mb-2 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">{title}</h3>
+        <p className="text-white text-sm mb-4">{description}</p>
+        <div className="flex flex-wrap gap-2 text-xs text-[#c0d4b8] font-mono">
+          {tags.map((tag, i) => <span key={i} className="px-2 py-1 bg-white/5 rounded drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">{tag}</span>)}
         </div>
       </div>
     </div>
