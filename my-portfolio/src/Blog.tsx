@@ -31,7 +31,7 @@ const Blog = () => {
     },
     {
       id: '3',
-      title: 'ICPC',
+      title: 'The Only One in the Room',
       excerpt: 'My reflections on competitive programming competitions and lessons learned.',
       date: 'March 5, 2024',
       readTime: '10 min read',
@@ -47,7 +47,7 @@ const Blog = () => {
     },
      {
       id: '5',
-      title: 'Lessons as a College Student',
+      title: '21 Life Lessons at 21',
       excerpt: 'My thoughts on classes at UW-Madison ',
       date: 'February 15, 2024',
       readTime: '9 min read',
@@ -55,7 +55,7 @@ const Blog = () => {
     },
     {
       id: '7',
-      title: 'College Course Map',
+      title: 'College Course Map and General Advice',
       excerpt: 'My thoughts on classes at UW-Madison ',
       date: 'February 15, 2024',
       readTime: '9 min read',
