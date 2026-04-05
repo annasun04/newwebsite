@@ -27,7 +27,7 @@ const Blog = () => {
       excerpt: 'The learning curve behind holding stocks for longer term. The risk, the reward, and trends I currently see in the markets',
       date: 'March 10, 2024',
       readTime: '12 min read',
-      category: 'Stocks and Markets'
+      category: 'Markets'
     },
     {
       id: '3',
@@ -39,7 +39,7 @@ const Blog = () => {
     },
     {
       id: '4',
-      title: 'College: Trading Competitions',
+      title: 'Trading Competitions',
       excerpt: 'Reflections and analysis on trading competitions [UChicago, Northwestern, Georgia Tech, Prosperity]',
       date: 'February 28, 2024',
       readTime: '15 min read',
@@ -66,7 +66,7 @@ const Blog = () => {
   const getCategoryColor = (category: string) => {
     const colors: Record<string, string> = {
       'Rock Climbing': 'bg-[#8aac78]/20 text-[#8aac78]',
-      'Stocks and Markets': 'bg-[#d4874c]/20 text-[#f4a460]',
+      'Markets': 'bg-[#d4874c]/20 text-[#f4a460]',
       'Competitive Programming': 'bg-[#9880b4]/20 text-[#d4a5d4]',
       'Experiences': 'bg-[#7a9e7b]/20 text-[#9ebf9e]',
       'Opinion': 'bg-[#a86868]/20 text-[#d99999]',

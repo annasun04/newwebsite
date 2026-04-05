@@ -6,13 +6,13 @@ const CollegeTradingCompetitions = () => {
   return (
     <div className="relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e]">
       {/* Solid base background */}
-      <div className="fixed inset-0 bg-[#1a3016] z-0"></div>
+      <div className="fixed inset-0 bg-[#f0f4ee] z-0"></div>
 
       {/* Dynamic Animated Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none w-full h-full">
-        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vw] bg-[#2a4822] rounded-full blur-[100px] animate-blob mix-blend-screen"></div>
-        <div className="absolute top-[-20%] right-[-20%] w-[55vw] h-[55vw] bg-[#3e6034] rounded-full blur-[100px] animation-delay-2000 mix-blend-screen"></div>
-        <div className="absolute bottom-[-30%] left-[15%] w-[70vw] h-[70vw] bg-[#0e1e0c] rounded-full blur-[100px] animation-delay-4000 mix-blend-screen"></div>
+        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vw] bg-[#FFFFFF] rounded-full blur-[100px] animate-blob mix-blend-screen"></div>
+        <div className="absolute top-[-20%] right-[-20%] w-[55vw] h-[55vw] bg-[#FFFFFF] rounded-full blur-[100px] animation-delay-2000 mix-blend-screen"></div>
+        <div className="absolute bottom-[-30%] left-[15%] w-[70vw] h-[70vw] bg-[#FFFFFF] rounded-full blur-[100px] animation-delay-4000 mix-blend-screen"></div>
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
       </div>
 
