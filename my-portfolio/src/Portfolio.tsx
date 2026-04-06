@@ -155,8 +155,8 @@ const Portfolio = () => {
                 icon: <Palette className="text-[#d88878]" />,
               },
               {
-                label: 'Other Skills',
-                items: 'Team Collaboration, Public Speaking, Project Management, Leadership',
+                label: 'Interests',
+                items: 'Bouldering, Tennis, Pickleball, Swimming, Ballet',
                 icon: <Sparkles className="text-[#708898]" />,
               },
             ].map((skill, i) => (
