@@ -19,7 +19,7 @@ const LearningToFailFast = () => {
       {/* Navigation */}
       <nav className="fixed w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5 py-4">
         <div className="max-w-5xl mx-auto px-6 flex items-center gap-4">
-          <Link to="/about" className="flex items-center gap-2 text-[#c4d4b8] hover:text-white transition-colors">
+          <Link to="/blog" className="flex items-center gap-2 text-[#c4d4b8] hover:text-white transition-colors">
             <ArrowLeft size={20} />
             <span className="text-sm font-medium">Back to Blog</span>
           </Link>

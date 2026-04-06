@@ -80,7 +80,7 @@ const Portfolio = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1e1610] transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
-            <Link to="/about" className="relative text-[#c4d4b8] hover:text-white transition-colors py-1 bg-transparent">
+            <Link to="/blog" className="relative text-[#c4d4b8] hover:text-white transition-colors py-1 bg-transparent">
               Blog
             </Link>
           </div>
