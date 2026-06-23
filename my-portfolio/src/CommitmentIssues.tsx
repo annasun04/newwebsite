@@ -40,7 +40,7 @@ const CommitmentIssues = () => {
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <Calendar size={16} />
-                <span>March 10, 2024</span>
+                <span>April 15, 2026</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={16} />
@@ -52,35 +52,77 @@ const CommitmentIssues = () => {
           {/* Content */}
           <div className="prose prose-invert max-w-none space-y-6 text-[#8aac78]">
             <p>
-              The learning curve behind holding stocks for the long term is steeper than most people realize. It's not just about picking the right companies—it's about managing emotions, understanding risk, and having conviction in your thesis.
+              Trading as an average person in the stock market can sound so simple yet can also be simultanteously complex. 
+              Here I give my thoughts and observations (not necessarily advice) on the market primarily tickers on the NASDAQ and NYSE. Also a 
+              brief dive into my change in patterns when going about buying and selling.
             </p>
 
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">The Psychology of Commitment</h2>
+            <h2 className="text-2xl font-bold text-white mt-8 mb-4">My Limited Experience</h2>
+          
+           
             <p>
-              As someone relatively new to investing, I've noticed that the hardest part isn't making the initial investment decision. It's holding through market volatility. When you buy a stock, you're entering into a commitment, and commitment requires discipline that most people don't have.
+              So investing for around less than a year.
+              Started with a couple of dollars
+              moved to maybe 100 max
+              then recently picked it up since raelized sitting in checking and
+              prolly good that I start early to understanding the markets if i am
+              to interact with it for the rest of my career
+              for me, as a bingger and not a lot of capital to lose, I can take mroe risks (more in the riss seciton)
+
+            </p>
+
+           
+
+            
+            
+            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Risk vs. Reward</h2>
+            <p>
+             A key component is understanding how much risk vs reward you want to take on. It seems people is different
+             situations but genreally older you are, take less risk since you have retirement and younger you have less to lose
+             why I choose my risk level (pretty high?)
+             now I am tryong to hold things for longer term (thus the title "commitment issues") since I tend to be risk adverse and panick sell or buy 
+             which just seems to only lead to breaking even So looking bigger picture and holding things for a week to a couple of months is what I
+             am testing.
             </p>
 
             <p>
-              I watch the market fluctuate daily. A 5% drop sends many investors into panic mode. But here's the thing: if you're investing in a company you genuinely believe in, the short-term noise is just that—noise.
+              practice of hedging, and generally go on bigger companeis that wont go bankrupt overnight or else there will be bigger orblems than just losing my money
+              also depends on how invested attention wise you want to be in the market. most people choose s& p and that is usually the return benchmark
             </p>
 
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Risk vs. Reward Dynamics</h2>
+
+            <h2 className="text-2xl font-bold text-white mt-8 mb-4">What do you listen to?</h2>
             <p>
-              The risk in holding long-term is opportunity cost. While you're committed to one stock, another might be skyrocketing. But the reward is often greater. The companies that have generated the most wealth are those where investors stayed committed through multiple market cycles.
+             One thing about the stock market that is sort of unique is the most simpel strategy can have the same returns as a complex ones for better or for worse.
+              I think when you first start, everything seems relatively simple (buy low sell high) but as you keep on going, 
+              there are a billion indicators from news, events, industries to focus on 
+              so it can get convoluted. Plus if you have a strategy that works, chances are it wont work 100% of the time
+              or has downsides like it doesnt last or takes a long time.
             </p>
 
+           
+  
+
+             <h2 className="text-2xl font-bold text-white mt-8 mb-4">Current Outlook</h2>
             <p>
-              I've been tracking several market trends, and the pattern is consistent: diversified portfolios with long holding periods beat market-timing strategies almost every time. The winners aren't those who make the most trades—they're those who stay the course.
+              AI Boom
+
+
+            </p>
+             <p>
+           
+              World Events
+           
+
+            </p>
+             <p>
+             
+              Consumerism
+
             </p>
 
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Current Market Perspectives</h2>
-            <p>
-              Currently, I'm seeing interesting opportunities in tech stocks that have been oversold, along with some emerging opportunities in sustainable energy and AI infrastructure. But I'm not chasing these aggressively. Instead, I'm building positions incrementally and planning to hold.
-            </p>
+            
 
-            <p>
-              The commitment issues I initially had aren't about commitment to stocks—they're about commitment to a philosophy. Once I adopted a long-term mindset, holding became easier.
-            </p>
           </div>
         </article>
       </main>

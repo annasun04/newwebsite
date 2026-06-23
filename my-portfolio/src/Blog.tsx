@@ -17,7 +17,7 @@ const Blog = () => {
       id: '1',
       title: 'Learning to Fail Fast',
       excerpt: 'Do you have a fear of failing? So do I. This is how bouldering has taught me to take more calculated risk',
-      date: 'March 15, 2024',
+      date: 'Month Day, Year',
       readTime: '8 min read',
       category: 'Rock Climbing'
     },
@@ -31,9 +31,9 @@ const Blog = () => {
     },
     {
       id: '3',
-      title: 'The Only One in the Room',
+      title: 'Only One',
       excerpt: 'My reflections on competitive programming competitions and lessons learned.',
-      date: 'March 5, 2024',
+      date: 'Month Day, Year',
       readTime: '10 min read',
       category: 'Competitive Programming'
     },
@@ -41,7 +41,7 @@ const Blog = () => {
       id: '4',
       title: 'Trading Competitions',
       excerpt: 'Reflections and analysis on trading competitions [UChicago, Northwestern, Georgia Tech, Prosperity]',
-      date: 'February 28, 2024',
+      date: 'Month Day, Year',
       readTime: '15 min read',
       category: 'Experiences'
     },
@@ -49,7 +49,7 @@ const Blog = () => {
       id: '5',
       title: '21 Life Lessons at 21',
       excerpt: 'My thoughts on classes at UW-Madison ',
-      date: 'February 15, 2024',
+      date: 'Month Day, Year',
       readTime: '9 min read',
       category: 'Opinion'
     },
@@ -57,7 +57,7 @@ const Blog = () => {
       id: '7',
       title: 'College Course Map and General Advice',
       excerpt: 'My thoughts on classes at UW-Madison ',
-      date: 'February 15, 2024',
+      date: 'Month Day, Year',
       readTime: '9 min read',
       category: 'Opinion'
     }

@@ -40,7 +40,7 @@ const CollegeCourseMap = () => {
             <div className="flex flex-wrap gap-6 text-sm text-[#3e6034]">
               <div className="flex items-center gap-2">
                 <Calendar size={16} />
-                <span>February 15, 2024</span>
+                <span>Month Day, Year</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={16} />
@@ -124,7 +124,7 @@ const CollegeCourseMap = () => {
             </table>
 
             <p>
-              Important context was that I came in with 43 credits, almost all gen ed credits, so I was able to (for better or for worse) compact major related classes early.
+              Important context was that I came in with 43 credits, almost all gen ed credits, so I was able to (for better or for worse) compact major related classes early. So in terms of determining your class schedule, it really depends also on the person as you have to decide the tradeoffs (i.e. is your goal to graduate as fast as possible, have the highest gpa, Also a good note, classes like algorithms, data structures, etc are now the standard and doesn't really differentiate you from the applicant pool as much as it used to so personal projects, experience, and research seems to have become the differentiator with your gpa and difficulty of classes being a point of reference.
             </p>
 
             <h2 className="text-2xl font-bold text-[#1a3016] mt-8 mb-4">Foundation Courses</h2>

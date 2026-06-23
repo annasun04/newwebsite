@@ -40,7 +40,7 @@ const ICPC = () => {
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <Calendar size={16} />
-                <span>March 5, 2024</span>
+                <span>Month Day, Year</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={16} />

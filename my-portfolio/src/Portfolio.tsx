@@ -5,6 +5,7 @@ import citadel from "./assets/citadel_event_photo.jpg";
 import wacm from "./assets/wacm_madhacks_2025.jpg";
 import uchicago from "./assets/uchicago_team_photo.jpg";
 import cardinal from "./assets/cardinal.jpg";
+import BooksCarousel from "./BooksCarousel";
 const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
@@ -109,11 +110,10 @@ const Portfolio = () => {
           </div>
           
           <p className="max-w-2xl text-[#8aac78] text-lg md:text-xl leading-relaxed">
-            I build end-to-end technical solutions spanning <span className="text-[#eef2ec]">data infrastructure, AI, and systems programming</span>, 
-            with a focus on <span className="text-[#eef2ec]">scalability</span>.
+            I work across <span className="text-[#eef2ec]">data infrastructure</span>, <span className="text-[#eef2ec]">AI</span>, and <span className="text-[#eef2ec]">systems programming</span> building <span className="text-[#eef2ec]">scalable software</span> from the ground (and sometimes not) up
             <br></br>
             <br></br>
-            You can find me <span className="text-[#eef2ec]">bouldering (currently working towards v7)</span>, playing <span className="text-[#eef2ec]">pickleball</span>, or <span className="text-[#eef2ec]">reading</span> in my free time.
+            I also recently just reached a <span className="text-[#eef2ec]">v5</span> in <span className="text-[#eef2ec]">bouldering</span>, have been hopping on the <span className="text-[#eef2ec]">pickleball</span> train and have started up <span className="text-[#eef2ec]">reading</span> again in my free time.
                   
           </p>
           
@@ -135,6 +135,11 @@ const Portfolio = () => {
 
       {/* Main Content - Added overflow-x-hidden here to prevent horizontal scrollbars from tilt cards */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 space-y-40 pb-40 overflow-x-hidden text-center">
+        {/* Books Carousel (under hero, above tech stack) */}
+        <ScrollReveal>
+          <BooksCarousel />
+        </ScrollReveal>
+
         {/* Tech Stack / Stats */}
         <ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-sm **max-w-5xl mx-auto**">
@@ -230,15 +235,24 @@ const Portfolio = () => {
                 </div>
                 <p className="text-[#c4d4b8] font-mono mb-6">Who am I?</p>
                 <h3 className="text-3xl font-bold text-white mb-6 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
-                  Software Engineer based in Madison.
+                  Software Engineer based (currently) in New York.
                 </h3>
                 <p className="text-white leading-relaxed mb-6">
-                  I’m a Computer Science and Statistics student at UW–Madison focused on building and maintaining systems. My journey started in web development and has evolved into an interest in databases and systems. 
+                  <ul>
+                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Major(s): Computer Science and Statistics</p></li>
+                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ School: University of Wisconsin-Madison</p></li>
+                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Hometown: Rochester, Minnesota</p></li>
+                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Roadmap: web dev {"-->"} databases and systems</p></li>
+                    <br></br>
+                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Gist: I enjoy challenges (academic or not) which has allowed me many opportunities for growth and has allowed me to gain many transferable skills!</p></li>
+                    <br></br>
+                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Favorite Quote: "You miss 100% of the shots you don't take"</p></li>
+
+                  </ul>
+                
                   <br>
                   </br>
-                  <br>
-                  </br>
-                  Originally from Minnesota, I've always enjoyed challenges (whether academic or not) which has allowed me to explore various sports, activities, and overcome some tough obstacles. My favorite quote has been "You miss 100% of the shots you don't take".
+              
                 </p>
                 
               </div>
@@ -255,8 +269,14 @@ const Portfolio = () => {
                 <ul className="space-y-8 border-l border-white/10 ml-1 pl-8">
                   <li className="relative">
                     <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#f0f4ee] shadow-[0_0_10px_#dce8d8]"></span>
+                    <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Summer Engineering Analyst</p>
+                    <p className="text-sm text-white mb-2">Goldman Sachs • Structured Products • Jun 2026 - Present</p>
+                    <p className="text-white/85 mb-5 text-sm">Automated Process...</p>
+                  </li>
+                  <li className="relative">
+                    <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-[#dce8d8] bg-[#f0f4ee] shadow-[0_0_10px_#dce8d8]"></span>
                     <p className="text-white font-bold drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Software Engineer Co-op</p>
-                    <p className="text-sm text-white mb-2">IBM • Feb 2026 - Present</p>
+                    <p className="text-sm text-white mb-2">IBM • Mobile Badge • Feb 2026 - Jun 2026</p>
                     <p className="text-white/85 mb-5 text-sm">Diagnosed and resolved provisioning/PACS database sync defects in an MVP digital badge microservice
 across multi-region datacenters for 2,500+ active users scaling to 300,000+ IBM employees globally</p>
                   </li>
