@@ -49,7 +49,7 @@ const Blog = () => {
       id: '5',
       title: 'optimizations irl',
       excerpt: 'Not all optimizations apply to code',
-      date: 'Month Day, Year',
+      date: '06-28, 2026',
       readTime: '9 min read',
       category: 'Opinion'
     },
@@ -57,7 +57,7 @@ const Blog = () => {
       id: '6',
       title: '21 lessons by 21',
       excerpt: 'some lessons i\'ve learned through trials and tribulations',
-      date: 'Month Day, Year',
+      date: '06-28, 2026',
       readTime: '9 min read',
       category: 'Opinion'
     },
@@ -65,7 +65,7 @@ const Blog = () => {
       id: '7',
       title: 'college courses and general advice',
       excerpt: 'My thoughts on classes at UW-Madison ',
-      date: 'Month Day, Year',
+      date: '02 15, 2026',
       readTime: '9 min read',
       category: 'Opinion'
     }
