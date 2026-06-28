@@ -7,7 +7,8 @@ import Bouldering from "./Bouldering";
 import CommitmentIssues from "./CommitmentIssues";
 import ICPC from "./ICPC";
 import CollegeTradingCompetitions from "./CollegeTradingCompetitions";
-import TwentyOneLessons from "./twentyOneLessons";
+import OptimizationsIRL from "./OptimizationsIRL";
+import TwentyOne from "./TwentyOne";
 import CollegeCourseMap from "./CollegeCourseMap";
 import "./index.css";
 
@@ -22,7 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/blog/2" element={<CommitmentIssues />} />
         <Route path="/blog/3" element={<ICPC />} />
         <Route path="/blog/4" element={<CollegeTradingCompetitions />} />
-        <Route path="/blog/5" element={<TwentyOneLessons />} />
+        <Route path="/blog/5" element={<OptimizationsIRL />} />
+        <Route path="/blog/6" element={<TwentyOne />} />
         <Route path="/blog/7" element={<CollegeCourseMap />} />
       </Routes>
     </BrowserRouter>

@@ -47,8 +47,16 @@ const Blog = () => {
     },
      {
       id: '5',
-      title: '21 Life Lessons at 21',
-      excerpt: 'My thoughts on classes at UW-Madison ',
+      title: 'optimizations irl',
+      excerpt: 'Not all optimizations apply to code',
+      date: 'Month Day, Year',
+      readTime: '9 min read',
+      category: 'Opinion'
+    },
+    {
+      id: '6',
+      title: '21 lessons by 21',
+      excerpt: 'some lessons i\'ve learned through trials and tribulations',
       date: 'Month Day, Year',
       readTime: '9 min read',
       category: 'Opinion'
@@ -88,6 +96,7 @@ const Blog = () => {
       '3': '/blog/3',
       '4': '/blog/4',
       '5': '/blog/5',
+      '6': '/blog/6',
       '7': '/blog/7'
     };
     if (routes[postId]) {

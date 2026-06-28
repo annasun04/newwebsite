@@ -50,9 +50,9 @@ const Bouldering = () => {
           </div>
 
           {/* Content */}
-          <div className="w-full max-w-none space-y-10 text-[#8aac78] text-lg md:text-xl leading-[1.9]">
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Background</h2>
-            <p>
+          <div className="w-full max-w-none space-y-20 text-[#8aac78] text-lg md:text-xl leading-[2.6] md:leading-[2.8]">
+            <h2 className="text-2xl font-bold text-white mt-16 mb-8">Background</h2>
+            <p className="mb-8">
               So when I moved to Austin to do a spring coop, bouldering was the last activity I thought I would get into. As someone
               who has developed a fear of heights towards the end of highschool (realizing by a valley fair amusement park trip) and who is risk adverse especially
               when it comes to things that could cause injury, I ended up being a regular. 
@@ -65,8 +65,8 @@ const Bouldering = () => {
               <br></br>
               <br></br>
             </p>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">V0: the initial climb</h2>
-            <p>
+            <h2 className="text-2xl font-bold text-white mt-16 mb-8">V0: the initial climb</h2>
+            <p className="mb-8">
               Obviously when you first climb, it'll be terrifying...or least at it should be. We, as humans, probably aren't supposed to feel no fear when trusting
               a mat and free falling a good 15 feet. There are two main hurdles when starting out.
               <br></br>
@@ -95,8 +95,8 @@ const Bouldering = () => {
               <br></br>
          
             </p>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">V1-V3: Gaining Interest</h2>
-            <p>
+            <h2 className="text-2xl font-bold text-white mt-16 mb-8">V1-V3: Gaining Interest</h2>
+            <p className="mb-8">
               After getting a bit more comfortable with the concept of bouldering and trying it out, the focus will shift to
               what type of problems you can do. Usually grades/levels vary from gym to gym but in general you'll start to know
               by looking at the types of holds, which ones you can probably managably do. Things become more fast paced
@@ -124,8 +124,8 @@ const Bouldering = () => {
                 go throughout the climb.
               </small>
             </p>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">V4+: Stagnation</h2>
-            <p>
+            <h2 className="text-2xl font-bold text-white mt-16 mb-8">V4+: Stagnation</h2>
+            <p className="mb-8">
               This may not be true for all climbers as everyone progresses at different paces but at some point, you'll start to stagnate as
               the problems get harder and the strength, flexibility, balance, etc become more and more necessary for climbs. Here
               chalk will begin to really make a difference and calluses will begin the ongoing cycle of falling off and gaining more on top.
@@ -134,8 +134,8 @@ const Bouldering = () => {
               In Austin, I ended up doing a soft V5 before having to leave for New York and having been on possibly a 4 week break from climbing
               may get back into it but just in a different city.
             </p>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Brief Technical Advice</h2>
-            <p>
+            <h2 className="text-2xl font-bold text-white mt-16 mb-8">Brief Technical Advice</h2>
+            <p className="mb-8">
               - Keep your body and your arms straight and loose. Rely on the tension perpendicular to the hold and this will allow you 
               to spend less energy on holding yourself up.
               <br></br>
@@ -165,8 +165,8 @@ const Bouldering = () => {
               <br></br>
               <br></br>
             </p>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Other Lessons</h2>
-            <p>
+            <h2 className="text-2xl font-bold text-white mt-16 mb-8">Other Lessons</h2>
+            <p className="mb-8">
               As I briefly mentioned, bouldering is surprisingly a very social sport (of course you can also choose not to socialize).
               When you climb, you engage a lot of forearm strength and this leads to blood rushing into your forearms. They will get
               pumped, super full of blood and feel really stiff and tight, where you need to stretch and take breaks in between climbs. Because
@@ -189,8 +189,8 @@ const Bouldering = () => {
               <br></br>
               <br></br>
             </p>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Summary: So Far</h2>
-            <p>
+            <h2 className="text-2xl font-bold text-white mt-16 mb-8">Summary: So Far</h2>
+            <p className="mb-8">
               All in all I'm grateful for all the lessons, technical and not, I've learned from this sport. It
               has led to such genuine and interesting people, a community, and what I believe may be some life long friends.
               From V0 to V5 it has surely been a journey and has came into my life during a time where a community, and restored belief

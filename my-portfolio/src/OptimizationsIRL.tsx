@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const TwentyOneLessons = () => {
+const OptimizationsIRL = () => {
   return (
     <div className="relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e]">
       {/* Solid base background */}
@@ -35,7 +35,7 @@ const TwentyOneLessons = () => {
               Opinion
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              21 Lessons by 21
+              Optimizations IRL
             </h1>
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
@@ -52,10 +52,15 @@ const TwentyOneLessons = () => {
           {/* Content */}
           <div className="w-full max-w-none space-y-10 text-[#8aac78] text-lg md:text-xl leading-[1.9]">
             <p>
-             Here are a list of 21 lessons that I've emphasized as I get older.
+             {/*
+             - let a car go before you
+             - walk in diagonals
+             - binary on hading out papers
+             - 
+              */}
             </p>
 
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. You are who you surround yourself with</h2>
+            {/* <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. You are who you surround yourself with</h2>
             <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Respect yourself</h2>
             <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. It's okay to be lonely</h2>
             <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Advocate for yourself</h2>
@@ -99,7 +104,7 @@ const TwentyOneLessons = () => {
               20. try new things
               21. Im not perfect and thats okay. that means i just have more to grow
 
-            </p>
+            </p>*/}
 
             
           </div>
@@ -109,4 +114,4 @@ const TwentyOneLessons = () => {
   );
 };
 
-export default TwentyOneLessons;
+export default OptimizationsIRL;
