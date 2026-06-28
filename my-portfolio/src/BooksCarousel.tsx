@@ -8,6 +8,7 @@ import designData from "./assets/designData.png";
 import optionsDeriv from "./assets/optionsDerivatives.png";
 import concreteMath from "./assets/concreteMath.png";
 import introProb from "./assets/introProb.png";
+import milkHoney from "./assets/milkHoney.png";
 type Book = {
   id: string;
   title: string;
@@ -19,14 +20,15 @@ type Book = {
 };
 
 const sampleBooks: Book[] = [
-  { id: '1', title: 'Deep Work', author: 'Cal Newport', color: 'from-sky-800 to-sky-800', progress: "100%", rating: "5/5", image: deepWork },
-  { id: '2', title: 'Harmony', author: 'Whitney Hanson', color: 'from-sky-400 to-sky-700', progress: "100%", rating: "5/5", image: harmony },
-  { id: '3', title: 'If We\'re Being Honest', author: 'Cat Shook', color: 'from-amber-400 to-amber-700', progress: "0%", rating: "*/5", image: honest},
-  { id: '4', title: 'Cracking The Coding Interview', author: 'Gayle Laakmann McDowell', color: 'from-indigo-400 to-indigo-700', progress: "15%", rating: "3/5", image: crackCode },
-  { id: '5', title: 'Designing Data-Intensive Applications', author: 'Martin Kleppmann \& Chris Riccomini', color: 'from-pink-400 to-pink-700', progress: "0%", rating: "*/5", image: designData },
-  { id: '6', title: 'Options, Futures, and Other Derivatives', author: 'John C. Hull', color: 'from-emerald-400 to-emerald-700', progress: "0%", rating: "*/5", image: optionsDeriv },
-  { id: '7', title: 'Concrete Mathematics', author: 'Ronald G, Donald K \& Oren P', color: 'from-pink-400 to-pink-700', progress: "0%", rating: "*/5", image: concreteMath },
-  { id: '8', title: 'Introduction to Probability', author: 'Joseph Blitzstein \& Jessica Hwang', color: 'from-emerald-400 to-emerald-700', progress: "0%", rating: "*/5", image: introProb },
+  { id: '1', title: 'Deep Work', author: 'Cal Newport', color: 'from-sky-800 to-sky-800', progress: "100%", rating: "5.0/5.0", image: deepWork },
+  { id: '2', title: 'Harmony', author: 'Whitney Hanson', color: 'from-sky-400 to-sky-700', progress: "100%", rating: "4.3/5.0", image: harmony },
+  { id: '3', title: 'If We\'re Being Honest', author: 'Cat Shook', color: 'from-amber-400 to-amber-700', progress: "0%", rating: "*/5.0", image: honest},
+  { id: '4', title: 'Cracking The Coding Interview', author: 'Gayle Laakmann McDowell', color: 'from-indigo-400 to-indigo-700', progress: "15%", rating: "3.5/5.0", image: crackCode },
+  { id: '5', title: 'Designing Data-Intensive Applications', author: 'Martin Kleppmann \& Chris Riccomini', color: 'from-pink-400 to-pink-700', progress: "0%", rating: "*/5.0", image: designData },
+  { id: '6', title: 'Options, Futures, and Other Derivatives', author: 'John C. Hull', color: 'from-emerald-400 to-emerald-700', progress: "0%", rating: "*/5.0", image: optionsDeriv },
+  { id: '7', title: 'Concrete Mathematics', author: 'Ronald G, Donald K \& Oren P', color: 'from-pink-400 to-pink-700', progress: "0%", rating: "*/5.0", image: concreteMath },
+  { id: '8', title: 'Introduction to Probability', author: 'Joseph Blitzstein \& Jessica Hwang', color: 'from-emerald-400 to-emerald-700', progress: "0%", rating: "*/5.0", image: introProb },
+  { id: '9', title: 'milk and honey', author: 'Rupi Kaur', color: 'from-emerald-400 to-emerald-700', progress: "100%", rating: "4.0/5.0", image: milkHoney },
 ];
 
 export default function BooksCarousel() {
