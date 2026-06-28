@@ -27,8 +27,8 @@ const CommitmentIssues = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-20">
-        <article className="space-y-8">
+      <main className="relative z-10 w-full pt-32 pb-24">
+        <article className="mx-auto w-[min(100%,72rem)] px-4 sm:px-6 lg:px-10 xl:px-12 space-y-8">
           {/* Header */}
           <div className="space-y-6">
             <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-[#f4a460]">
@@ -50,7 +50,7 @@ const CommitmentIssues = () => {
           </div>
 
           {/* Content */}
-          <div className="prose prose-invert max-w-none space-y-6 text-[#8aac78]">
+          <div className="w-full max-w-none space-y-10 text-[#8aac78] text-lg md:text-xl leading-[1.9]">
             <p>
               Trading as an average person in the stock market can sound so simple yet can also be simultanteously complex. 
               Here I give my thoughts and observations (not necessarily advice) on the market primarily tickers on the NASDAQ and NYSE. Also a 

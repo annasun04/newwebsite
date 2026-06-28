@@ -27,8 +27,8 @@ const CollegeCourseMap = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-20">
-        <article className="space-y-8">
+      <main className="relative z-10 w-full pt-32 pb-24">
+        <article className="mx-auto w-[min(100%,72rem)] px-4 sm:px-6 lg:px-10 xl:px-12 space-y-8">
           {/* Header */}
           <div className="space-y-6">
             <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-[#80a478]">
@@ -50,7 +50,7 @@ const CollegeCourseMap = () => {
           </div>
 
           {/* Content */}
-          <div className="prose prose-invert max-w-none space-y-6 text-[#0e1e0c]">
+          <div className="w-full max-w-none space-y-10 text-[#0e1e0c] text-lg md:text-xl leading-[1.9]">
             <p>
               I came into college with no prior experience to coding so when it came to mapping out my schedule, advice from the people around me really helped give me the option to graduate in 2 years (even though I ultimately decided to not do this). I've decided to return the favor but keep in mind that it is unique to my own experiences and are subjective.
             </p>

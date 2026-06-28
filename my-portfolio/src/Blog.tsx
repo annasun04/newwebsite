@@ -15,23 +15,23 @@ const Blog = () => {
   const blogPosts: BlogPost[] = [
     {
       id: '1',
-      title: 'Learning to Fail Fast',
-      excerpt: 'Do you have a fear of failing? So do I. This is how bouldering has taught me to take more calculated risk',
-      date: 'Month Day, Year',
+      title: 'bouldering',
+      excerpt: 'Some knowledge about bouldering',
+      date: '06-28, 2026',
       readTime: '8 min read',
       category: 'Rock Climbing'
     },
     {
       id: '2',
-      title: 'Commitment Issues',
-      excerpt: 'The learning curve behind holding stocks for longer term. The risk, the reward, and trends I currently see in the markets',
+      title: 'day trading',
+      excerpt: 'Observations I\'ve made about the markets',
       date: 'March 10, 2024',
       readTime: '12 min read',
       category: 'Markets'
     },
     {
       id: '3',
-      title: 'Only One',
+      title: 'competitive programming',
       excerpt: 'My reflections on competitive programming competitions and lessons learned.',
       date: 'Month Day, Year',
       readTime: '10 min read',
@@ -39,7 +39,7 @@ const Blog = () => {
     },
     {
       id: '4',
-      title: 'Trading Competitions',
+      title: 'trading competitions',
       excerpt: 'Reflections and analysis on trading competitions [UChicago, Northwestern, Georgia Tech, Prosperity]',
       date: 'Month Day, Year',
       readTime: '15 min read',
@@ -55,7 +55,7 @@ const Blog = () => {
     },
     {
       id: '7',
-      title: 'College Course Map and General Advice',
+      title: 'college courses and general advice',
       excerpt: 'My thoughts on classes at UW-Madison ',
       date: 'Month Day, Year',
       readTime: '9 min read',
@@ -121,8 +121,8 @@ const Blog = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="relative z-10 max-w-5xl mx-auto px-6 pt-32 pb-20">
-        <div className="space-y-12">
+      <main className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-32 pb-24">
+        <div className="mx-auto w-[min(100%,72rem)] space-y-12">
           <div>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">my blog.</h1>
             <p className="text-lg text-[#8aac78]">thoughts on experiences, technology, markets and more</p>

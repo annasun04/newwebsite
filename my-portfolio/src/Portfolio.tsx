@@ -134,7 +134,7 @@ const Portfolio = () => {
       </header>
 
       {/* Main Content - Added overflow-x-hidden here to prevent horizontal scrollbars from tilt cards */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 space-y-40 pb-40 overflow-x-hidden text-center">
+      <main className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 space-y-40 pb-40 overflow-x-hidden text-center">
         {/* Books Carousel (under hero, above tech stack) */}
         <ScrollReveal>
           <BooksCarousel />

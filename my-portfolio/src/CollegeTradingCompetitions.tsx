@@ -27,8 +27,8 @@ const CollegeTradingCompetitions = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="relative z-10 max-w-3xl mx-auto px-6 pt-32 pb-20">
-        <article className="space-y-8">
+      <main className="relative z-10 w-full pt-32 pb-24">
+        <article className="mx-auto w-[min(100%,72rem)] px-4 sm:px-6 lg:px-10 xl:px-12 space-y-8">
           {/* Header */}
           <div className="space-y-6">
             <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-[#9ebf9e]">
@@ -50,7 +50,7 @@ const CollegeTradingCompetitions = () => {
           </div>
 
           {/* Content */}
-          <div className="prose prose-invert max-w-none space-y-6 text-[#3e6034]">
+          <div className="w-full max-w-none space-y-10 text-[#3e6034] text-lg md:text-xl leading-[1.9]">
             <p>
               Trading competitions have been some of the most intense and educational experiences of my college career. I've participated in competitions at UChicago, Northwestern, Georgia Tech, and Prosperity, each offering unique insights into financial markets and decision-making under pressure.
             </p>
