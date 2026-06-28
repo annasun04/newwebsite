@@ -35,7 +35,7 @@ const TwentyOne = () => {
               Opinion
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              Optimizations IRL
+              21 Lessons by 21
             </h1>
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">

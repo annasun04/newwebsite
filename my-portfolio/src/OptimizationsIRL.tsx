@@ -51,61 +51,50 @@ const OptimizationsIRL = () => {
 
           {/* Content */}
           <div className="w-full max-w-none space-y-10 text-[#8aac78] text-lg md:text-xl leading-[1.9]">
+             <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. Car First</h2>
             <p>
-             {/*
-             - let a car go before you
-             - walk in diagonals
-             - binary on hading out papers
-             - 
-              */}
+              <br></br>
+              <br></br>
+              Sometimes when you are about to cross the sidewalk and theres one or two cars, signal and let them go first.
+              Let's say it takes you 10 seconds to cross that road and 1 second for a car to drive to continue on the road.
+              If you go first it is 10 seconds for you to cross, 10 seconds the driver waits, and 1 second for the driver to continue on.
+              Approximating 21 seconds of time used and 10 seconds of wasted time for the driver.<br></br>
+              If you go second, it takes 1 second for the driver to continue, 1 second for you to wait, and 10 seconds for you to cross
+              coming to a total of 12 seconds and a waited time for you of 1 second. Almost always it is a better tradeoff for both you and 
+              the driver unless you really need to get someone and that tradeoff value doesn't match. Plus it's a nice thing to do and most
+              drivers are grateful and it may make their day better.
+              <br></br>
+              <br></br>
             </p>
-
-            {/* <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. You are who you surround yourself with</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Respect yourself</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. It's okay to be lonely</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Advocate for yourself</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Empathy is valuable</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">6. You can create impact now</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">7. Take risk and don't fear failure</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">8. Learn from the mistakes of others</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">9. You yourself and your values</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">10. You and your experiences are not unique</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">11. It's okay not to get along with others</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">12. Being confrontational is good</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">13. Work hard, play hard is better than just work hard</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">14. Humility is underrated</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">15. Healing is a process that doesn't end</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">16. Learn to be comfortable in the uncomfortable</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">17. We are all human</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">18. Do you really know yourself</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">19. Things are not that serious</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">20. You are not perfect and that's okay</h2>
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">21. Perspective defines everything</h2>
+             <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Diagonals</h2>
             <p>
-              1. you are who you surround yourself with
-              2. what respecting yourself looks like and means (boundaries)
-              3. okay with being lonely
-              4. advocate for yourself
-              5. practice empathy. its a good investment
-              6. what change and influence looks like (dont wait until youre successful for impact, it compunds over time)
-              7. you miss 100% of the shots you dont take
-              8. learn from others mistakes
-              9. dont fear failure
-              10. know yourself and your values
-              11. what it means to have different values than others and how to go about it (i.e. distance)
-              12. confrontation. being direct but depends
-              13. find waht you enjoy (allows work hard play hrad without burining out)
-              14. humility and confidence
-              15. getting over things or reflecting is a continous process, it doesnt end
-              16. take good risks to be uncomfortable
-              17. everyone is going through something. everyone is human, makes mistakes, and "othering" people just makes us more distanced
-              18. take time to learn about yourself (style, personality, etc.) 
-              19. things are not that serious. no matter what obstacle, mindset shift (not being delusional but being optimistic)
-              20. try new things
-              21. Im not perfect and thats okay. that means i just have more to grow
+              <br></br>
+              <br></br>
+              If you need to get someone fast or faster than the estimated google maps time, at every point possible,
+              try to cross in a diagonal. Based off of the Triangle Inequality Theorem, a+b have to be greater or equal to c
+              where a and b are horizontal and vertical sides and c is the diagonal interesting the two. So when you walk in 
+              a diagonal, even by a little bit, it is less physical distance to walk and compounded over your entire journey,
+              each diagonal will make the difference increase. (I used to to maximize the amount of time i could sleep and minimize the amount of 
+              walk time to my classes my first year of college, taking usually 10 minutes for a 15-20 minute route)
+              <br></br>
+              <br></br>
+            </p>
+             <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. Binary Handout</h2>
+            <p>
+              <br></br>
+              <br></br>
+              Whenever someone disperses paper to a relatively large group (say to a class) it almost always
+              trickles down semi linearly. Using what we know from binary search and the more extended b-trees
+              or trees in general, we can disperse the papers way faster by splitting the stack up and handing it to different
+              people. If multiple people do it, it becomes a way faster process and if it is a test, make things more fair
+              in terms of starting time. If you are the only person doing it, it still helps by making it (say you split it into two) reach
+              the last person faster by almost twice the original amount.
+              <br></br>
+              <br></br>
+            </p>
+            
 
-            </p>*/}
-
+          
             
           </div>
         </article>
