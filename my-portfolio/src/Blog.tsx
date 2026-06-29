@@ -65,7 +65,7 @@ const Blog = () => {
       id: '7',
       title: 'college courses and general advice',
       excerpt: 'My thoughts on classes at UW-Madison ',
-      date: '02 15, 2026',
+      date: '02-15, 2026',
       readTime: '9 min read',
       category: 'Opinion'
     }

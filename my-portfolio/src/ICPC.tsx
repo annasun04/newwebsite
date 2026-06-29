@@ -35,7 +35,7 @@ const ICPC = () => {
               Competitive Programming
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              ICPC
+              Competitive Programming
             </h1>
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
@@ -51,40 +51,15 @@ const ICPC = () => {
 
           {/* Content */}
           <div className="w-full max-w-none space-y-10 text-[#8aac78] text-lg md:text-xl leading-[1.9]">
-            <p>
-              The International Collegiate Programming Contest (ICPC) has been one of the most challenging and rewarding experiences of my college career. It's more than just a competition—it's a masterclass in problem-solving, teamwork, and mental resilience.
-            </p>
-
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">The Preparation Journey</h2>
-            <p>
-              Preparing for ICPC is intense. Our team would spend hours working through past problems, building up our competitive programming toolkit. We had to master data structures, algorithm optimization, and mathematical problem-solving all while working under time pressure.
-            </p>
-
-            <p>
-              What surprised me most wasn't the difficulty of the problems themselves, but the mental game. When you're in a 5-hour contest and you've been stuck on a problem for 90 minutes, you need to decide: do you keep pushing, or do you pivot? Those decisions, made correctly or incorrectly, determine outcomes.
-            </p>
-
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">Team Dynamics</h2>
-            <p>
-              ICPC is a team sport. You have three people and one computer, and you need to work seamlessly together. Communication becomes critical. One person codes while two others are thinking. You have to trust your teammates' problem-solving approaches and validate each other's ideas quickly.
-            </p>
-
-            <p>
-              I learned more about collaboration through ICPC than through most of my engineering projects. You're not just building something—you're solving novel problems on the fly with people who think differently than you do.
-            </p>
+            
 
             <h2 className="text-2xl font-bold text-white mt-8 mb-4">Key Lessons</h2>
             <p>
               The biggest lesson from ICPC is that consistency beats brilliance. The teams that consistently performed well weren't necessarily the smartest—they were the ones who practiced regularly, knew their tools inside out, and didn't panic under pressure.
             </p>
 
-            <p>
-              I also learned the importance of debugging efficiently. In a contest, time is your scarcest resource. Being able to quickly identify why code isn't working separates good teams from great teams.
-            </p>
-
-            <p>
-              ICPC has shaped how I approach engineering problems today. I think more algorithmically, I value efficiency, and I'm more comfortable tackling unfamiliar problems head-on.
-            </p>
+           
+=
           </div>
         </article>
       </main>

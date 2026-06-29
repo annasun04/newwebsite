@@ -35,7 +35,7 @@ const CommitmentIssues = () => {
               Stocks and Markets
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              Commitment Issues
+              Day Trading
             </h1>
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">

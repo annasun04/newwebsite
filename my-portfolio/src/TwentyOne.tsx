@@ -40,7 +40,7 @@ const TwentyOne = () => {
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <Calendar size={16} />
-                <span>Month Day, Year</span>
+                <span>06-28, 2026</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={16} />
