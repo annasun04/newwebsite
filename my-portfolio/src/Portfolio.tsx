@@ -98,11 +98,7 @@ const Portfolio = () => {
               transform: `translate3d(${(mousePosition.x - window.innerWidth / 2) * -0.004}px, ${(mousePosition.y - window.innerHeight / 2) * -0.003}px, 0)`
             }}
           >
-            <img
-              src="/intro/hero-after-intro.png"
-              alt=""
-              className="hero-scene__image"
-            />
+            <div className="hero-scene__image"></div>
           </div>
 
           <div className="hero-dust hero-dust--left">

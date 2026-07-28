@@ -22,6 +22,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isFading, setIsFading] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
+  const [audioBlocked, setAudioBlocked] = useState(false);
 
   useLayoutEffect(() => {
     if (!isVisible) return;
@@ -65,6 +66,23 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
   const finishIntro = () => {
     if (isFinishingRef.current) return;
     isFinishingRef.current = true;
+
+    const video = videoRef.current;
+    if (video?.videoWidth && video.videoHeight) {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext("2d");
+      if (context) {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const frame = canvas.toDataURL("image/jpeg", 0.9);
+        document.documentElement.style.setProperty(
+          "--intro-final-frame",
+          `url("${frame}")`,
+        );
+      }
+    }
+
     setIsFading(true);
 
     const audio = audioRef.current;
@@ -100,6 +118,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
       await audio.play()
         .then(() => {
           autoplayBlockedRef.current = false;
+          setAudioBlocked(false);
         })
         .catch(() => undefined);
       return;
@@ -108,6 +127,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
     if (soundOn) {
       audio.pause();
       soundOnRef.current = false;
+      setAudioBlocked(false);
       setSoundOn(false);
       return;
     }
@@ -120,6 +140,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
     setSoundOn(true);
     await audio.play().catch(() => {
       soundOnRef.current = false;
+      setAudioBlocked(true);
       setSoundOn(false);
     });
   };
@@ -134,9 +155,11 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
         audio?.play()
           .then(() => {
             autoplayBlockedRef.current = false;
+            setAudioBlocked(false);
           })
           .catch(() => {
             autoplayBlockedRef.current = true;
+            setAudioBlocked(true);
           });
       }
     }, 1000);
@@ -156,6 +179,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
       audio.play()
         .then(() => {
           autoplayBlockedRef.current = false;
+          setAudioBlocked(false);
         })
         .catch(() => undefined);
     };
@@ -186,7 +210,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <div className={isVisible ? "" : "intro-site-ready"} aria-hidden={isVisible}>
+      <div className={isVisible ? "intro-site-underlay" : "intro-site-ready"} aria-hidden={isVisible}>
         {children}
       </div>
 
@@ -215,7 +239,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
           />
 
           <button
-            className="site-intro__sound"
+            className={`site-intro__sound ${audioBlocked ? "site-intro__sound--blocked" : ""}`}
             type="button"
             onClick={toggleSound}
             aria-label={soundOn ? "Mute intro music" : "Play intro music"}
