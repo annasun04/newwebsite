@@ -90,7 +90,61 @@ const Portfolio = () => {
 
       {/* Hero Section */}
       <header className="min-h-screen flex flex-col justify-center px-6 relative max-w-7xl mx-auto pt-20 z-10">
-        <div className="space-y-8 max-w-4xl">
+        {/* The intro's final scene continues behind the opening page. */}
+        <div className="hero-scene" aria-hidden="true">
+          <div
+            className="hero-scene__parallax"
+            style={{
+              transform: `translate3d(${(mousePosition.x - window.innerWidth / 2) * -0.004}px, ${(mousePosition.y - window.innerHeight / 2) * -0.003}px, 0)`
+            }}
+          >
+            <img
+              src="/intro/hero-after-intro.png"
+              alt=""
+              className="hero-scene__image"
+            />
+          </div>
+
+          <div className="hero-dust hero-dust--left">
+            {Array.from({ length: 36 }, (_, i) => (
+              <i
+                key={`left-${i}`}
+                style={{
+                  left: `${12 + ((i * 37) % 76)}%`,
+                  top: `${(i * 53) % 96}%`,
+                  width: `${1 + (i % 3)}px`,
+                  height: `${1 + (i % 3)}px`,
+                  animationDelay: `${-(i * 0.47)}s`,
+                  animationDuration: `${7 + (i % 7)}s`,
+                }}
+              />
+            ))}
+          </div>
+          <div className="hero-dust hero-dust--right">
+            {Array.from({ length: 36 }, (_, i) => (
+              <i
+                key={`right-${i}`}
+                style={{
+                  left: `${10 + ((i * 43) % 80)}%`,
+                  top: `${(i * 61) % 96}%`,
+                  width: `${1 + (i % 2)}px`,
+                  height: `${1 + (i % 2)}px`,
+                  animationDelay: `${-(i * 0.59)}s`,
+                  animationDuration: `${8 + (i % 6)}s`,
+                }}
+              />
+            ))}
+          </div>
+
+          <div className="hero-light-pulse hero-light-pulse--left"></div>
+          <div className="hero-light-pulse hero-light-pulse--right"></div>
+          <div className="hero-fog hero-fog--high"></div>
+          <div className="hero-fog hero-fog--back"></div>
+          <div className="hero-fog hero-fog--front"></div>
+          <div className="hero-scene__shade"></div>
+        </div>
+
+        <div className="relative z-10 space-y-8 max-w-2xl">
           
           
           <div className="space-y-2">
