@@ -14,6 +14,7 @@ import CollegeCourseMap from "./CollegeCourseMap";
 import "./index.css";
 
 const SiteIntro = ({ children }: { children: React.ReactNode }) => {
+  const targetAudioDuration = 25;
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const isFinishingRef = useRef(false);
@@ -23,6 +24,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
   const [isFading, setIsFading] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [audioBlocked, setAudioBlocked] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useLayoutEffect(() => {
     if (!isVisible) return;
@@ -84,22 +86,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
     }
 
     setIsFading(true);
-
-    const audio = audioRef.current;
-    const startingVolume = audio?.volume ?? 0;
-    const fadeStartedAt = performance.now();
     const fadeDuration = 1800;
-
-    const fadeAudio = (now: number) => {
-      if (!audio) return;
-      const progress = Math.min((now - fadeStartedAt) / fadeDuration, 1);
-      const softenedProgress = progress * progress * (3 - 2 * progress);
-      audio.volume = startingVolume * (1 - softenedProgress);
-      if (progress < 1) requestAnimationFrame(fadeAudio);
-      else audio.pause();
-    };
-
-    requestAnimationFrame(fadeAudio);
     window.setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       setIsVisible(false);
@@ -145,65 +132,50 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  useEffect(() => {
+  const startIntro = async () => {
     const video = videoRef.current;
     const audio = audioRef.current;
+    if (!video || !audio) return;
 
-    const startTimer = window.setTimeout(() => {
-      video?.play().catch(() => undefined);
-      if (soundOnRef.current) {
-        audio?.play()
-          .then(() => {
-            autoplayBlockedRef.current = false;
-            setAudioBlocked(false);
-          })
-          .catch(() => {
-            autoplayBlockedRef.current = true;
-            setAudioBlocked(true);
-          });
-      }
-    }, 1000);
+    video.currentTime = 0;
+    audio.currentTime = 0;
+    if (Number.isFinite(audio.duration) && audio.duration > 0) {
+      audio.preservesPitch = true;
+      audio.playbackRate = audio.duration / targetAudioDuration;
+    }
+    audio.volume = 1;
+    soundOnRef.current = true;
+    setSoundOn(true);
+    setAudioBlocked(false);
+    setHasStarted(true);
 
-    const recoverSound = () => {
-      if (
-        !autoplayBlockedRef.current ||
-        !soundOnRef.current ||
-        isFinishingRef.current ||
-        !video ||
-        !audio
-      ) return;
+    const videoPlayback = video.play();
+    const audioPlayback = audio.play();
+    const [, audioResult] = await Promise.allSettled([videoPlayback, audioPlayback]);
 
-      if (Number.isFinite(audio.duration)) {
-        audio.currentTime = Math.min(video.currentTime, Math.max(0, audio.duration - 0.1));
-      }
-      audio.play()
-        .then(() => {
-          autoplayBlockedRef.current = false;
-          setAudioBlocked(false);
-        })
-        .catch(() => undefined);
-    };
+    if (audioResult.status === "fulfilled") {
+      autoplayBlockedRef.current = false;
+    } else {
+      autoplayBlockedRef.current = true;
+      setAudioBlocked(true);
+      soundOnRef.current = false;
+      setSoundOn(false);
+    }
+  };
 
-    document.addEventListener("pointerdown", recoverSound, true);
-    document.addEventListener("keydown", recoverSound, true);
-
+  useEffect(() => {
     return () => {
-      window.clearTimeout(startTimer);
-      document.removeEventListener("pointerdown", recoverSound, true);
-      document.removeEventListener("keydown", recoverSound, true);
       videoRef.current?.pause();
       audioRef.current?.pause();
     };
   }, []);
 
-  const fadeAudioNearEnd = () => {
-    const video = videoRef.current;
+  const updateAudioFade = () => {
     const audio = audioRef.current;
-    if (!video || !audio || !Number.isFinite(video.duration)) return;
+    if (!audio) return;
 
-    const fadeLength = Math.min(6, video.duration * 0.4);
-    const remaining = video.duration - video.currentTime;
-    const progress = Math.max(0, Math.min(1, 1 - remaining / fadeLength));
+    const effectiveAudioTime = audio.currentTime / Math.max(audio.playbackRate, 0.01);
+    const progress = Math.max(0, Math.min(1, (effectiveAudioTime - 20) / 5));
     const softenedProgress = progress * progress * (3 - 2 * progress);
     audio.volume = 1 - softenedProgress;
   };
@@ -213,6 +185,18 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
       <div className={isVisible ? "intro-site-underlay" : "intro-site-ready"} aria-hidden={isVisible}>
         {children}
       </div>
+
+      <audio
+        ref={audioRef}
+        src="/intro/intro.mp3"
+        preload="auto"
+        onLoadedMetadata={(event) => {
+          const audio = event.currentTarget;
+          audio.preservesPitch = true;
+          audio.playbackRate = audio.duration / targetAudioDuration;
+        }}
+        onTimeUpdate={updateAudioFade}
+      />
 
       {isVisible && (
         <div
@@ -227,26 +211,30 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
             muted
             playsInline
             preload="auto"
-            onTimeUpdate={fadeAudioNearEnd}
             onEnded={finishIntro}
             onError={finishIntro}
           />
-          <audio
-            ref={audioRef}
-            src="/intro/intro.mp3"
-            preload="auto"
-            onEnded={() => undefined}
-          />
 
-          <button
-            className={`site-intro__sound ${audioBlocked ? "site-intro__sound--blocked" : ""}`}
-            type="button"
-            onClick={toggleSound}
-            aria-label={soundOn ? "Mute intro music" : "Play intro music"}
-            title={soundOn ? "Mute music" : "Play music"}
-          >
-            {soundOn ? <Volume2 size={15} /> : <VolumeX size={15} />}
-          </button>
+          {!hasStarted && (
+            <div className="site-intro__curtain">
+              <button className="site-intro__enter" type="button" onClick={startIntro}>
+                <span>Enter portfolio</span>
+                <i aria-hidden="true" />
+              </button>
+            </div>
+          )}
+
+          {hasStarted && (
+            <button
+              className={`site-intro__sound ${audioBlocked ? "site-intro__sound--blocked" : ""}`}
+              type="button"
+              onClick={toggleSound}
+              aria-label={soundOn ? "Mute intro music" : "Play intro music"}
+              title={soundOn ? "Mute music" : "Play music"}
+            >
+              {soundOn ? <Volume2 size={15} /> : <VolumeX size={15} />}
+            </button>
+          )}
 
           <button className="site-intro__skip" type="button" onClick={finishIntro}>
             Skip intro

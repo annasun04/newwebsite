@@ -6,6 +6,7 @@ import wacm from "./assets/wacm_madhacks_2025.jpg";
 import uchicago from "./assets/uchicago_team_photo.jpg";
 import cardinal from "./assets/cardinal.jpg";
 import BooksCarousel from "./BooksCarousel";
+import PortfolioGame from "./PortfolioGame";
 const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
@@ -593,6 +594,8 @@ across multi-region datacenters for 2,500+ active users scaling to 300,000+ IBM 
       <footer className="py-8 text-center text-[#5a8050] text-sm relative z-10 drop-shadow-[0_0_6px_rgba(200,200,200,0.4)]">
         <p>© 2026 Anna Sun. Crafted with React & Tailwind.</p>
       </footer>
+
+      <PortfolioGame />
 
       {/* Custom Animations */}
       <style>{`
