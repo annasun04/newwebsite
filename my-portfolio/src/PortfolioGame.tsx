@@ -1,199 +1,236 @@
 import React, { useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
 
-type PlayerId = "younger" | "older";
 type Control = "left" | "right" | "jump";
 type PlayerState = {
-  x: number; y: number; vx: number; vy: number;
-  grounded: boolean; facing: 1 | -1;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  grounded: boolean;
+  facing: 1 | -1;
+  coyoteTime: number;
+  jumpBuffer: number;
+  landingTime: number;
 };
 
-const PLAYER_WIDTH = 42;
-const PLAYER_HEIGHT = 82;
+const PLAYER_WIDTH = 94;
+const PLAYER_HEIGHT = 140;
+const FLOOR_INSET = 0;
+const MAX_RUN_SPEED = 305;
+const JUMP_SPEED = 610;
+
+const moveToward = (value: number, target: number, amount: number) => {
+  if (value < target) return Math.min(value + amount, target);
+  if (value > target) return Math.max(value - amount, target);
+  return target;
+};
 
 const PortfolioGame = () => {
-  const youngerRef = useRef<HTMLDivElement>(null);
-  const olderRef = useRef<HTMLDivElement>(null);
-  const keysRef = useRef(new Set<string>());
+  const characterRef = useRef<HTMLDivElement>(null);
+  const shadowRef = useRef<HTMLSpanElement>(null);
+  const controlsRef = useRef(new Set<Control>());
   const initializedRef = useRef(false);
-  const playersRef = useRef<Record<PlayerId, PlayerState>>({
-    younger: { x: 0, y: 0, vx: 0, vy: 0, grounded: false, facing: 1 },
-    older: { x: 0, y: 0, vx: 0, vy: 0, grounded: false, facing: -1 },
+  const playerRef = useRef<PlayerState>({
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    grounded: true,
+    facing: 1,
+    coyoteTime: 0.1,
+    jumpBuffer: 0,
+    landingTime: 0,
   });
 
   useEffect(() => {
-    const platformElements = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        "main section, main .rounded-2xl, main .rounded-3xl, main .grid > div",
-      ),
-    ).filter((element) => element.offsetWidth > 130 && element.offsetHeight > 35);
-    platformElements.forEach((element) => element.classList.add("game-platform"));
+    const press = (control: Control) => {
+      controlsRef.current.add(control);
+      if (control === "jump") playerRef.current.jumpBuffer = 0.13;
+    };
+
+    const release = (control: Control) => {
+      controlsRef.current.delete(control);
+    };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
-      if (["arrowleft", "arrowright", "arrowup", "a", "d", "w"].includes(key)) {
-        keysRef.current.add(key);
+      const control =
+        key === "arrowleft" || key === "a" ? "left" :
+        key === "arrowright" || key === "d" ? "right" :
+        key === "arrowup" || key === "w" || key === " " ? "jump" : null;
+
+      if (control) {
+        if (!event.repeat) press(control);
         event.preventDefault();
       }
     };
-    const handleKeyUp = (event: KeyboardEvent) => keysRef.current.delete(event.key.toLowerCase());
-    const clearKeys = () => keysRef.current.clear();
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      if (key === "arrowleft" || key === "a") release("left");
+      if (key === "arrowright" || key === "d") release("right");
+      if (key === "arrowup" || key === "w" || key === " ") release("jump");
+    };
+
+    const clearControls = () => controlsRef.current.clear();
     window.addEventListener("keydown", handleKeyDown, { passive: false });
     window.addEventListener("keyup", handleKeyUp);
-    window.addEventListener("blur", clearKeys);
+    window.addEventListener("blur", clearControls);
 
     let animationFrame = 0;
     let previousTime = performance.now();
+
     const frame = (now: number) => {
       const width = window.innerWidth;
       const height = window.innerHeight;
-      const floor = height - 18;
+      const floor = height - FLOOR_INSET;
+      const player = playerRef.current;
+
       if (!initializedRef.current) {
-        playersRef.current.younger.x = Math.max(24, width * 0.23);
-        playersRef.current.older.x = Math.min(width - PLAYER_WIDTH - 24, width * 0.74);
-        playersRef.current.younger.y = height * 0.55;
-        playersRef.current.older.y = height * 0.5;
+        player.x = Math.max(20, width * 0.2);
+        player.y = floor - PLAYER_HEIGHT;
         initializedRef.current = true;
       }
 
       const delta = Math.min((now - previousTime) / 1000, 0.032);
       previousTime = now;
-      const platforms = platformElements
-        .map((element) => element.getBoundingClientRect())
-        .filter((rect) => rect.bottom > 0 && rect.top < height && rect.width > 80);
+      const movingLeft = controlsRef.current.has("left");
+      const movingRight = controlsRef.current.has("right");
+      const horizontalInput = movingLeft === movingRight ? 0 : movingLeft ? -1 : 1;
 
-      const updatePlayer = (
-        id: PlayerId, leftKey: string, rightKey: string, jumpKey: string,
-        element: HTMLDivElement | null,
-      ) => {
-        const player = playersRef.current[id];
-        const previousBottom = player.y + PLAYER_HEIGHT;
-        const movingLeft = keysRef.current.has(leftKey);
-        const movingRight = keysRef.current.has(rightKey);
-        if (movingLeft !== movingRight) {
-          player.vx += (movingLeft ? -1450 : 1450) * delta;
-          player.facing = movingLeft ? -1 : 1;
-        } else {
-          player.vx *= Math.pow(0.001, delta);
-        }
-        player.vx = Math.max(-260, Math.min(260, player.vx));
-        if (keysRef.current.has(jumpKey) && player.grounded) {
-          player.vy = -535;
-          player.grounded = false;
-          keysRef.current.delete(jumpKey);
-        }
+      if (horizontalInput) {
+        const acceleration = player.grounded ? 2150 : 1080;
+        player.vx = moveToward(
+          player.vx,
+          horizontalInput * MAX_RUN_SPEED,
+          acceleration * delta,
+        );
+        player.facing = horizontalInput as 1 | -1;
+      } else {
+        const deceleration = player.grounded ? 2550 : 260;
+        player.vx = moveToward(player.vx, 0, deceleration * delta);
+      }
 
-        player.vy = Math.min(760, player.vy + 1350 * delta);
-        player.x += player.vx * delta;
-        player.y += player.vy * delta;
-        player.x = Math.max(6, Math.min(width - PLAYER_WIDTH - 6, player.x));
+      player.coyoteTime = player.grounded
+        ? 0.105
+        : Math.max(0, player.coyoteTime - delta);
+      player.jumpBuffer = Math.max(0, player.jumpBuffer - delta);
+      player.landingTime = Math.max(0, player.landingTime - delta);
+
+      if (player.jumpBuffer > 0 && player.coyoteTime > 0) {
+        player.vy = -JUMP_SPEED;
         player.grounded = false;
+        player.coyoteTime = 0;
+        player.jumpBuffer = 0;
+      }
 
-        if (player.vy >= 0) {
-          const newBottom = player.y + PLAYER_HEIGHT;
-          let landingTop = Number.POSITIVE_INFINITY;
-          for (const platform of platforms) {
-            const overlapsX =
-              player.x + PLAYER_WIDTH * 0.72 > platform.left &&
-              player.x + PLAYER_WIDTH * 0.28 < platform.right;
-            const crossedTop =
-              previousBottom <= platform.top + 7 &&
-              newBottom >= platform.top &&
-              newBottom <= platform.top + Math.max(34, player.vy * delta + 10);
-            if (overlapsX && crossedTop && platform.top < landingTop) landingTop = platform.top;
-          }
-          if (landingTop !== Number.POSITIVE_INFINITY) {
-            player.y = landingTop - PLAYER_HEIGHT;
-            player.vy = 0;
-            player.grounded = true;
-          } else if (newBottom >= floor) {
-            player.y = floor - PLAYER_HEIGHT;
-            player.vy = 0;
-            player.grounded = true;
-          }
-        }
+      if (!controlsRef.current.has("jump") && player.vy < -245) {
+        player.vy = moveToward(player.vy, -245, 1850 * delta);
+      }
 
-        if (element) {
-          element.style.transform =
-            `translate3d(${player.x}px, ${player.y}px, 0) scaleX(${player.facing})`;
-          element.dataset.motion =
-            !player.grounded ? "jumping" : Math.abs(player.vx) > 24 ? "running" : "idle";
-        }
-      };
+      player.vy = Math.min(980, player.vy + 1660 * delta);
+      player.x += player.vx * delta;
+      player.y += player.vy * delta;
 
-      updatePlayer("younger", "arrowleft", "arrowright", "arrowup", youngerRef.current);
-      updatePlayer("older", "a", "d", "w", olderRef.current);
+      const minX = 2;
+      const maxX = Math.max(minX, width - PLAYER_WIDTH - 2);
+      if (player.x <= minX || player.x >= maxX) player.vx = 0;
+      player.x = Math.max(minX, Math.min(maxX, player.x));
+
+      const wasGrounded = player.grounded;
+      const landingVelocity = player.vy;
+      player.grounded = false;
+
+      if (player.y + PLAYER_HEIGHT >= floor) {
+        player.y = floor - PLAYER_HEIGHT;
+        player.vy = 0;
+        player.grounded = true;
+        if (!wasGrounded && landingVelocity > 260) player.landingTime = 0.15;
+      }
+
+      const character = characterRef.current;
+      const shadow = shadowRef.current;
+      const airHeight = Math.max(0, floor - (player.y + PLAYER_HEIGHT));
+      const shadowScale = Math.max(0.48, 1 - airHeight / 320);
+      const speedRatio = Math.min(1, Math.abs(player.vx) / MAX_RUN_SPEED);
+
+      if (character) {
+        character.style.transform = `translate3d(${player.x}px, ${player.y}px, 0)`;
+        character.style.setProperty("--walk-duration", `${Math.round(560 - speedRatio * 190)}ms`);
+        character.dataset.motion =
+          player.landingTime > 0
+            ? "landing"
+            : !player.grounded
+              ? "jumping"
+              : Math.abs(player.vx) > 22
+                ? "running"
+                : "idle";
+        character.dataset.facing = String(player.facing);
+      }
+
+      if (shadow) {
+        shadow.style.transform = `translate3d(${player.x + 18}px, ${floor - 6}px, 0) scaleX(${shadowScale})`;
+        shadow.style.opacity = String(Math.max(0.16, 0.48 - airHeight / 520));
+      }
+
       animationFrame = requestAnimationFrame(frame);
     };
+
     animationFrame = requestAnimationFrame(frame);
 
     return () => {
       cancelAnimationFrame(animationFrame);
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
-      window.removeEventListener("blur", clearKeys);
-      platformElements.forEach((element) => element.classList.remove("game-platform"));
+      window.removeEventListener("blur", clearControls);
     };
   }, []);
 
-  const setControl = (player: PlayerId, control: Control, pressed: boolean) => {
-    const key = player === "younger"
-      ? { left: "arrowleft", right: "arrowright", jump: "arrowup" }[control]
-      : { left: "a", right: "d", jump: "w" }[control];
-    if (pressed) keysRef.current.add(key);
-    else keysRef.current.delete(key);
+  const setControl = (control: Control, pressed: boolean) => {
+    if (pressed) {
+      controlsRef.current.add(control);
+      if (control === "jump") playerRef.current.jumpBuffer = 0.13;
+    } else {
+      controlsRef.current.delete(control);
+    }
   };
 
-  const controlButton = (
-    player: PlayerId, control: Control, label: string, icon: React.ReactNode,
-  ) => (
+  const controlButton = (control: Control, label: string, icon: React.ReactNode) => (
     <button
       type="button"
-      aria-label={`${label} ${player} self`}
+      aria-label={label}
       onPointerDown={(event) => {
         event.currentTarget.setPointerCapture(event.pointerId);
-        setControl(player, control, true);
+        setControl(control, true);
       }}
-      onPointerUp={() => setControl(player, control, false)}
-      onPointerCancel={() => setControl(player, control, false)}
-      onPointerLeave={() => setControl(player, control, false)}
+      onPointerUp={() => setControl(control, false)}
+      onPointerCancel={() => setControl(control, false)}
+      onPointerLeave={() => setControl(control, false)}
     >
       {icon}
     </button>
   );
 
-  const character = (id: PlayerId, ref: React.RefObject<HTMLDivElement | null>) => (
-    <div ref={ref} className={`game-character game-character--${id}`} data-motion="idle">
-      <span className="game-character__label">{id}</span>
-      <span className="game-character__shadow" />
-      <span className="game-character__body">
-        <span className="game-character__head" />
-        <span className="game-character__torso" />
-        <span className="game-character__leg game-character__leg--left" />
-        <span className="game-character__leg game-character__leg--right" />
-      </span>
-    </div>
-  );
-
   return (
-    <div className="portfolio-game" aria-label="Interactive portfolio characters">
-      {character("younger", youngerRef)}
-      {character("older", olderRef)}
+    <div className="portfolio-game" aria-label="Interactive portfolio character">
+      <span ref={shadowRef} className="game-character__shadow" aria-hidden="true" />
+
+      <div ref={characterRef} className="game-character" data-motion="idle" data-facing="1">
+        <span className="game-character__body" aria-hidden="true">
+          <span className="game-character__sprite" />
+        </span>
+      </div>
+
       <div className="game-hint" aria-hidden="true">
-        <span><strong>younger</strong> ← ↑ →</span>
-        <span><strong>older</strong> A W D</span>
+        <span>Move ← → / A D</span>
+        <span>Jump ↑ / W / Space</span>
       </div>
-      <div className="game-controls game-controls--younger">
-        <span>younger</span>
-        {controlButton("younger", "left", "Move", <ArrowLeft size={15} />)}
-        {controlButton("younger", "jump", "Jump", <ArrowUp size={15} />)}
-        {controlButton("younger", "right", "Move", <ArrowRight size={15} />)}
-      </div>
-      <div className="game-controls game-controls--older">
-        <span>older</span>
-        {controlButton("older", "left", "Move", <ArrowLeft size={15} />)}
-        {controlButton("older", "jump", "Jump", <ArrowUp size={15} />)}
-        {controlButton("older", "right", "Move", <ArrowRight size={15} />)}
+
+      <div className="game-controls game-controls--active">
+        {controlButton("left", "Move left", <ArrowLeft size={15} />)}
+        {controlButton("jump", "Jump", <ArrowUp size={15} />)}
+        {controlButton("right", "Move right", <ArrowRight size={15} />)}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
   const isFinishingRef = useRef(false);
   const soundOnRef = useRef(true);
   const autoplayBlockedRef = useRef(false);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(() => window.location.pathname === "/");
   const [isFading, setIsFading] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [audioBlocked, setAudioBlocked] = useState(false);
@@ -70,6 +70,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
     isFinishingRef.current = true;
 
     const video = videoRef.current;
+    const audio = audioRef.current;
     if (video?.videoWidth && video.videoHeight) {
       const canvas = document.createElement("canvas");
       canvas.width = video.videoWidth;
@@ -84,6 +85,20 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
         );
       }
     }
+
+    video?.pause();
+    if (video) {
+      video.currentTime = 0;
+    }
+    audio?.pause();
+    if (audio) {
+      audio.currentTime = 0;
+      audio.volume = 1;
+    }
+    autoplayBlockedRef.current = false;
+    soundOnRef.current = false;
+    setAudioBlocked(false);
+    setSoundOn(false);
 
     setIsFading(true);
     const fadeDuration = 1800;
