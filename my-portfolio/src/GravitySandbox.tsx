@@ -249,6 +249,11 @@ const GravitySandbox = () => {
         }));
       }
       currentScene = sceneFor(performance.now() - startTime);
+      if (currentScene === 7 && !plateAnchor) {
+        plateAnchor = pointer ? { ...pointer } : { x: width / 2, y: height / 2 };
+        sampledPointer = { ...plateAnchor };
+        if (returningInSessionRef.current) plateStartedAt = performance.now() - 4800;
+      }
       setTargets(targetsForScene(currentScene), currentScene);
     };
 
@@ -286,8 +291,8 @@ const GravitySandbox = () => {
         if (currentScene === 7) {
           plateStartedAt = now;
           plateDwell = 0;
-          sampledPointer = pointer;
-          plateAnchor = pointer ? { ...pointer } : null;
+          plateAnchor = pointer ? { ...pointer } : { x: width / 2, y: height / 2 };
+          sampledPointer = { ...plateAnchor };
           plateModeKey = '';
         }
         setTargets(targetsForScene(currentScene), currentScene);
@@ -326,8 +331,9 @@ const GravitySandbox = () => {
           ? Math.hypot(pointer.x - sampledPointer.x, pointer.y - sampledPointer.y)
           : pointer ? 100 : 0;
         if (!pointer) {
-          plateDwell = Math.max(0, plateDwell - 0.12);
-          plateAnchor = null;
+          plateAnchor ??= { x: width / 2, y: height / 2 };
+          sampledPointer = { ...plateAnchor };
+          plateDwell = Math.min(1, plateDwell + 0.055);
         } else if (movement > 5 || nextKey !== plateModeKey) {
           plateDwell = Math.max(0, plateDwell - 0.18);
           plateAnchor = { ...pointer };
