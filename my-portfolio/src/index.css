@@ -407,6 +407,24 @@ html.home-route body::-webkit-scrollbar-thumb {
   font-size: clamp(2.75rem, 7vw, 5rem) !important;
 }
 .blog-minimal main > div > div:first-child p { color: #8f8f8f !important; }
+.blog-replay-intro {
+  margin-top: 0.9rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #2c2c2c;
+  border-radius: 2px;
+  background: transparent;
+  color: #8f8f8f;
+  font: 400 0.7rem/1.2 "IBM Plex Sans", sans-serif;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.blog-replay-intro:hover,
+.blog-replay-intro:focus-visible {
+  color: #fff;
+  border-color: #666;
+  outline: none;
+}
 .blog-minimal .grid > article {
   padding: 1.25rem 0 !important;
   border-width: 1px 0 0 !important;

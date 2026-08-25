@@ -181,6 +181,24 @@ const Blog = () => {
     setSoundOn(!audio.muted);
   };
 
+  const replayIntro = () => {
+    const audio = audioRef.current;
+    audio?.pause();
+    if (audio) audio.currentTime = 0;
+    cancelAnimationFrame(animationFrameRef.current);
+    cancelAnimationFrame(fireflyAnimationFrameRef.current);
+    isFinishingRef.current = false;
+    fallbackStartRef.current = 0;
+    fireflyTrailRef.current = [];
+    fireflyLastTrailTimeRef.current = -1;
+    fireflyPreviousTimeRef.current = 0;
+    setIntroFading(false);
+    setIntroStarted(false);
+    setActiveLine(-1);
+    setSoundOn(true);
+    setIntroVisible(true);
+  };
+
   useEffect(() => {
     if (!introVisible || !introStarted) return;
 
@@ -574,6 +592,9 @@ const Blog = () => {
           <div>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">blog.</h1>
             <p className="text-lg text-[#8aac78]">thoughts on experiences, technology, markets and more</p>
+            <button className="blog-replay-intro" type="button" onClick={replayIntro}>
+              replay intro
+            </button>
           </div>
 
           {/* Blog Grid */}
