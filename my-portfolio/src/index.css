@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* A single shared navigation bar is rendered for every route. */
+body nav:not(.site-navigation) { display: none !important; }
+.site-navigation,
+.site-navigation a {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+}
+
 /* Global font and base styles */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,6 +22,423 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Restrained editorial styling for the portfolio home page. */
+.portfolio-minimal { background: #000; color: #c7c7c7; }
+.portfolio-minimal nav {
+  background: rgba(0, 0, 0, 0.96) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+.portfolio-minimal nav button,
+.portfolio-minimal nav a { color: #c7c7c7 !important; }
+.portfolio-minimal nav button:hover,
+.portfolio-minimal nav a:hover,
+.portfolio-minimal a:hover { color: #fff !important; }
+.portfolio-minimal h1,
+.portfolio-minimal h2,
+.portfolio-minimal h3,
+.portfolio-minimal h4,
+.portfolio-minimal p span,
+.portfolio-minimal strong {
+  color: #fff !important;
+  background-image: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+.portfolio-minimal p { color: #c7c7c7; }
+.portfolio-minimal [class*="drop-shadow"],
+.portfolio-minimal [class*="shadow-"] {
+  filter: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+.portfolio-minimal .portfolio-skills,
+.portfolio-minimal .portfolio-about-card,
+.portfolio-minimal .portfolio-project-card {
+  background: #090909 !important;
+  border: 1px solid #242424 !important;
+  border-radius: 4px !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+.portfolio-minimal .portfolio-project-card { transform: none !important; }
+.portfolio-minimal .portfolio-project-card > div:first-child { background-image: none !important; }
+.portfolio-minimal .portfolio-project-card [class*="rounded"] { border-radius: 2px !important; }
+.portfolio-minimal section#about > div:first-child > div > div:first-child { display: none; }
+.portfolio-minimal li > span.absolute.rounded-full {
+  background: #000 !important;
+  border-color: #737373 !important;
+  box-shadow: none !important;
+}
+.portfolio-minimal section#events img {
+  filter: grayscale(1) contrast(0.95) !important;
+  opacity: 0.72 !important;
+  transform: none !important;
+}
+.portfolio-minimal section#events [class*="rotate-"] {
+  transform: none !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+.portfolio-minimal section#contact h2,
+.portfolio-minimal section#contact h2 span {
+  color: #fff !important;
+  background-image: none !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.portfolio-minimal footer {
+  color: #737373 !important;
+  border-top: 1px solid #1f1f1f;
+}
+
+/* The home page is intentionally a plain, highly readable document. */
+.portfolio-minimal,
+.portfolio-minimal button,
+.portfolio-minimal a {
+  font-family: "IBM Plex Sans", ui-sans-serif, sans-serif !important;
+}
+.portfolio-minimal *,
+.portfolio-minimal strong {
+  font-weight: 400 !important;
+}
+.portfolio-minimal main { text-align: left !important; }
+.portfolio-minimal h1,
+.portfolio-minimal h2,
+.portfolio-minimal h3,
+.portfolio-minimal h4 {
+  letter-spacing: -0.025em !important;
+  line-height: 1.08 !important;
+}
+.portfolio-minimal header h1 { font-size: clamp(3.5rem, 10vw, 7rem) !important; }
+.portfolio-minimal header p {
+  max-width: 42rem;
+  color: #c7c7c7 !important;
+  line-height: 1.7;
+}
+.portfolio-minimal header button {
+  padding: 0.35rem 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid #737373 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+}
+.portfolio-minimal header button:hover { border-color: #fff !important; }
+.portfolio-minimal main > * + * { margin-top: 5rem; }
+.portfolio-minimal main section {
+  border-top: 1px solid #222;
+  padding-top: 2rem;
+}
+.portfolio-minimal main section h2 { font-size: clamp(2rem, 5vw, 3.5rem) !important; }
+.portfolio-minimal .portfolio-skills {
+  padding: 2rem 0 !important;
+  border-width: 1px 0 !important;
+  border-color: #222 !important;
+  background: transparent !important;
+}
+.portfolio-minimal .portfolio-skills svg { display: none; }
+.portfolio-minimal .portfolio-skills > div { text-align: left !important; }
+.portfolio-minimal .portfolio-skills > div > div { justify-content: flex-start !important; }
+.portfolio-minimal .portfolio-projects-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+  max-width: 56rem !important;
+  margin-left: 0 !important;
+}
+.portfolio-minimal .portfolio-project-card {
+  padding: 2rem 0 !important;
+  border-width: 0 0 1px !important;
+  border-color: #222 !important;
+  background: transparent !important;
+}
+.portfolio-minimal .portfolio-project-card svg { display: none; }
+.portfolio-minimal .portfolio-project-card > div:first-child,
+.portfolio-minimal .portfolio-project-card [class*="bg-gradient"] { display: none; }
+.portfolio-minimal .portfolio-project-card [class*="bg-white"] {
+  padding: 0 !important;
+  background: transparent !important;
+}
+.portfolio-minimal .portfolio-project-card [class*="rounded"] { border: 0 !important; }
+.portfolio-minimal .portfolio-about-card {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.portfolio-minimal section#about { align-items: start; }
+.portfolio-minimal section#about ul,
+.portfolio-minimal section#events ul { border-color: #2b2b2b !important; }
+.portfolio-minimal section#events > div > div { text-align: left; }
+.portfolio-minimal section#contact {
+  margin-left: 0 !important;
+  text-align: left !important;
+}
+.portfolio-minimal section#contact h2 { font-size: clamp(2.5rem, 7vw, 5rem) !important; }
+.portfolio-minimal section#contact > div > div { justify-content: flex-start !important; }
+.portfolio-minimal section#contact a {
+  padding: 0.5rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.portfolio-minimal main {
+  max-width: 72rem;
+  margin-inline: auto;
+}
+.portfolio-minimal .portfolio-section-label {
+  color: #737373;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.portfolio-minimal section#work > div:first-child > div {
+  justify-content: flex-start !important;
+}
+.portfolio-minimal section#about,
+.portfolio-minimal section#events {
+  max-width: 56rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.portfolio-minimal section#about ul,
+.portfolio-minimal section#events ul {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  border-left: 0 !important;
+}
+.portfolio-minimal section#about li,
+.portfolio-minimal section#events li {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #222;
+}
+.portfolio-minimal section#about li > span,
+.portfolio-minimal section#events li > span {
+  display: none !important;
+}
+.portfolio-minimal section#about li p,
+.portfolio-minimal section#events li p {
+  margin-bottom: 0.35rem !important;
+}
+.portfolio-minimal section#events > div > div {
+  display: block !important;
+}
+.portfolio-minimal section#events .hidden.md\:flex {
+  display: none !important;
+}
+
+/* Compact home-page rhythm: hierarchy comes from type and spacing, not lines. */
+.portfolio-minimal header h1 {
+  font-size: clamp(2.75rem, 7vw, 5.5rem) !important;
+}
+.portfolio-minimal header .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.5rem !important;
+}
+.portfolio-minimal header p { font-size: 0.8rem !important; }
+.portfolio-minimal main {
+  font-size: 0.875rem;
+  max-width: 64rem;
+}
+.portfolio-minimal main > * + * { margin-top: 3.5rem; }
+.portfolio-minimal main section {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+.portfolio-minimal main section h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem) !important;
+  margin-bottom: 1.75rem !important;
+}
+.portfolio-minimal .portfolio-section-label {
+  margin-bottom: 1rem !important;
+  font-size: 0.7rem !important;
+}
+
+html:has(.portfolio-minimal),
+body:has(.portfolio-minimal) {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html:has(.portfolio-minimal)::-webkit-scrollbar,
+body:has(.portfolio-minimal)::-webkit-scrollbar {
+  display: none;
+}
+
+.experience-minimal,
+.experience-minimal button,
+.experience-minimal a {
+  font-family: "IBM Plex Sans", ui-sans-serif, sans-serif !important;
+}
+.experience-minimal *,
+.experience-minimal strong { font-weight: 400 !important; }
+.experience-minimal section { margin-bottom: 6rem; }
+.experience-minimal section h2 {
+  color: #fff !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.experience-minimal .experience-project + .experience-project { margin-top: 0.25rem; }
+.experience-minimal ul {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  border-left: 0 !important;
+}
+.experience-minimal ul li {
+  padding: 0.8rem 0;
+}
+.experience-minimal ul li > span.absolute { display: none; }
+.experience-minimal ul li p:first-of-type { font-size: 0.85rem; }
+.experience-minimal ul li p { margin-bottom: 0.25rem !important; color: #aaa !important; }
+.experience-minimal ul li p:first-of-type { color: #fff !important; }
+.experience-minimal section img {
+  filter: grayscale(1) !important;
+  opacity: 0.75 !important;
+}
+.experience-minimal section img:hover { opacity: 1 !important; }
+.experience-minimal section [class*="rotate-"] {
+  transform: none !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.experience-minimal section:last-of-type {
+  margin-top: 5rem !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+.experience-minimal section:last-of-type > div {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+.experience-minimal section:last-of-type svg { display: none; }
+.experience-minimal section:last-of-type p { font-family: "IBM Plex Sans", sans-serif !important; font-size: 0.75rem; }
+
+/* Blog index and articles share the same quiet visual system as the portfolio. */
+.blog-minimal {
+  background: #000 !important;
+  color: #c7c7c7 !important;
+  font-family: "IBM Plex Sans", ui-sans-serif, sans-serif !important;
+}
+.blog-minimal *,
+.blog-minimal strong,
+.blog-minimal b { font-weight: 400 !important; }
+.blog-minimal > .fixed,
+.blog-minimal > div > .fixed { display: none !important; }
+.blog-minimal h1,
+.blog-minimal h2,
+.blog-minimal h3,
+.blog-minimal h4 {
+  color: #fff !important;
+  background-image: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  filter: none !important;
+  text-shadow: none !important;
+  letter-spacing: -0.025em;
+}
+.blog-minimal p,
+.blog-minimal li { color: #c7c7c7 !important; }
+.blog-minimal [class*="drop-shadow"],
+.blog-minimal [class*="shadow-"] {
+  filter: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+.blog-minimal main { padding-top: 7rem !important; }
+.blog-minimal main > div,
+.blog-minimal main > article { max-width: 64rem !important; }
+.blog-minimal main > div > div:first-child h1 {
+  margin-bottom: 0.5rem !important;
+  font-size: clamp(2.75rem, 7vw, 5rem) !important;
+}
+.blog-minimal main > div > div:first-child p { color: #8f8f8f !important; }
+.blog-minimal .grid > article {
+  padding: 1.25rem 0 !important;
+  border-width: 1px 0 0 !important;
+  border-color: #242424 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.blog-minimal .grid > article h2 { font-size: 1rem !important; }
+.blog-minimal .grid > article p { color: #a8a8a8 !important; font-size: 0.78rem !important; }
+.blog-minimal .grid > article [class*="rounded-full"] {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #777 !important;
+}
+.blog-minimal article {
+  font-size: 0.9rem;
+}
+.blog-minimal article > div:first-child { margin-bottom: 2.5rem; }
+.blog-minimal article h1 { font-size: clamp(2.25rem, 6vw, 4rem) !important; }
+.blog-minimal article h2 { font-size: 1.35rem !important; }
+.blog-minimal article p { line-height: 1.75 !important; }
+.blog-minimal article [class*="text-[#"] { color: #c7c7c7 !important; }
+.blog-minimal article [class*="bg-[#"],
+.blog-minimal article [class*="bg-white"] { background-color: transparent !important; }
+.blog-minimal article [class*="rounded-"] { border-radius: 0.25rem !important; }
+.portfolio-minimal .portfolio-skills {
+  gap: 1rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.portfolio-minimal .portfolio-skills > div { margin: 0 !important; }
+.portfolio-minimal .portfolio-skills p { font-size: 0.75rem !important; }
+.portfolio-minimal .portfolio-project-card {
+  padding: 1.25rem 0 !important;
+  border: 0 !important;
+}
+.portfolio-minimal .portfolio-project-card h3 {
+  margin-bottom: 0.35rem !important;
+  font-size: 1rem !important;
+}
+.portfolio-minimal .portfolio-project-card p {
+  margin-bottom: 0.65rem !important;
+  font-size: 0.8rem !important;
+  line-height: 1.55 !important;
+}
+.portfolio-minimal .portfolio-project-card [class*="gap-2"] { gap: 0.5rem !important; }
+.portfolio-minimal section#work h2 {
+  margin-bottom: 0.75rem !important;
+  color: #8a8a8a !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+}
+.portfolio-minimal .portfolio-projects-grid { max-width: 48rem !important; }
+.portfolio-minimal .portfolio-project-card {
+  padding: 0.9rem 0 !important;
+}
+.portfolio-minimal .portfolio-project-card > div:nth-child(2) {
+  margin-bottom: 0.4rem !important;
+}
+.portfolio-minimal .portfolio-project-card h3 {
+  font-size: 0.9rem !important;
+}
+.portfolio-minimal .portfolio-project-card p {
+  max-width: 42rem;
+  color: #a8a8a8 !important;
+  font-size: 0.75rem !important;
+  line-height: 1.5 !important;
+}
+.portfolio-minimal .portfolio-project-card > div:last-child {
+  display: none !important;
+}
+.portfolio-minimal .portfolio-project-card span.font-mono {
+  color: #777 !important;
+  font-size: 0.68rem !important;
+}
+.portfolio-minimal section#contact { padding-top: 0 !important; }
+.portfolio-minimal section#contact a { font-size: 0.8rem !important; }
+.portfolio-minimal footer {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  border-top: 0 !important;
+  font-size: 0.7rem !important;
 }
 
 body {

@@ -11,6 +11,9 @@ import CollegeTradingCompetitions from "./CollegeTradingCompetitions";
 import OptimizationsIRL from "./OptimizationsIRL";
 import TwentyOne from "./TwentyOne";
 import CollegeCourseMap from "./CollegeCourseMap";
+import HiggsfieldAI from "./HiggsfieldAI";
+import Experience from "./Experience";
+import SiteNav from "./SiteNav";
 import "./index.css";
 
 const SiteIntro = ({ children }: { children: React.ReactNode }) => {
@@ -262,8 +265,8 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <SiteIntro>
       <BrowserRouter>
+        <SiteNav />
         <Routes>
           <Route path="/" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
@@ -274,8 +277,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/blog/5" element={<OptimizationsIRL />} />
           <Route path="/blog/6" element={<TwentyOne />} />
           <Route path="/blog/7" element={<CollegeCourseMap />} />
+          <Route path="/blog/8" element={<HiggsfieldAI />} />
+          <Route path="/experience" element={<Experience />} />
         </Routes>
       </BrowserRouter>
-    </SiteIntro>
   </React.StrictMode>
 );

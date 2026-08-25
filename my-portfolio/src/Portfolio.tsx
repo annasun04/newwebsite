@@ -1,28 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react'; 
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, ArrowUpRight, Code2, Palette, Layers, ChevronDown, Sparkles } from 'lucide-react';
-import citadel from "./assets/citadel_event_photo.jpg";
-import wacm from "./assets/wacm_madhacks_2025.jpg";
-import uchicago from "./assets/uchicago_team_photo.jpg";
-import cardinal from "./assets/cardinal.jpg";
-import BooksCarousel from "./BooksCarousel";
-import PortfolioGame from "./PortfolioGame";
+import { Github, Linkedin, Mail, Layers } from 'lucide-react';
+import GravitySandbox from './GravitySandbox';
 const Portfolio = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
 
-  // Global mouse tracker for spotlight and parallax
-  const handleMouseMove = (e: MouseEvent) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -36,40 +23,18 @@ const Portfolio = () => {
 
   return (
     // CHANGED: min-h-[100dvh] handles mobile browsers better than min-h-screen
-    <div className="relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e]">
+    <div className="portfolio-minimal relative min-h-[100dvh] bg-black text-neutral-400 font-sans selection:bg-white selection:text-black">
       
-      {/* Solid base background */}
-      <div className="fixed inset-0 bg-[#1a3016] z-0"></div>
-
-      {/* Dynamic Animated Background - CHANGED: 'fixed' ensures it covers the full viewport always */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none w-full h-full">
-        {/* Blobs */}
-        <div className="absolute top-[-20%] left-[-20%] w-[60vw] h-[60vw] bg-[#2a4822] rounded-full blur-[100px] animate-blob mix-blend-screen"></div>
-        <div className="absolute top-[-20%] right-[-20%] w-[55vw] h-[55vw] bg-[#3e6034] rounded-full blur-[100px] animate-blob animation-delay-2000 mix-blend-screen"></div>
-        <div className="absolute bottom-[-30%] left-[15%] w-[70vw] h-[70vw] bg-[#0e1e0c] rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-screen"></div>
-
-        {/* Mouse spotlight */}
-        <div 
-          className="absolute inset-0 transition-opacity duration-300"
-          style={{
-            background: `radial-gradient(700px at ${mousePosition.x}px ${mousePosition.y}px, rgba(86, 149, 81, 0.91), transparent 90%)`
-          }}
-        />
-
-        {/* Grid Overlay */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-      </div>
-
       {/* Glass Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 ${scrollY > 50 ? 'bg-black/40 backdrop-blur-xl border-b border-white/5 py-4' : 'py-6 bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="text-2xl font-bold tracking-tight cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1e1610] to-[#1e1610] group-hover:to-[#eef2ec] transition-all duration-300">
-              
+            <span className="text-white transition-opacity duration-300 group-hover:opacity-60">
+              Anna Sun
             </span>
           </div>
           <div className="flex gap-8 text-sm font-medium items-center">
-            {['About', 'Work', 'Contact'].map((item) => (
+            {['Work', 'Contact'].map((item) => (
               <button 
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())} 
@@ -82,6 +47,9 @@ const Portfolio = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1e1610] transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
+            <Link to="/experience" className="relative text-[#c4d4b8] hover:text-white transition-colors py-1 bg-transparent">
+              Experience
+            </Link>
             <Link to="/blog" className="relative text-[#c4d4b8] hover:text-white transition-colors py-1 bg-transparent">
               Blog
             </Link>
@@ -89,153 +57,25 @@ const Portfolio = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <header className="min-h-screen flex flex-col justify-center px-6 relative max-w-7xl mx-auto pt-20 z-10">
-        {/* The intro's final scene continues behind the opening page. */}
-        <div className="hero-scene" aria-hidden="true">
-          <div
-            className="hero-scene__parallax"
-            style={{
-              transform: `translate3d(${(mousePosition.x - window.innerWidth / 2) * -0.004}px, ${(mousePosition.y - window.innerHeight / 2) * -0.003}px, 0)`
-            }}
-          >
-            <div className="hero-scene__image"></div>
-          </div>
-
-          <div className="hero-dust hero-dust--left">
-            {Array.from({ length: 36 }, (_, i) => (
-              <i
-                key={`left-${i}`}
-                style={{
-                  left: `${12 + ((i * 37) % 76)}%`,
-                  top: `${(i * 53) % 96}%`,
-                  width: `${1 + (i % 3)}px`,
-                  height: `${1 + (i % 3)}px`,
-                  animationDelay: `${-(i * 0.47)}s`,
-                  animationDuration: `${7 + (i % 7)}s`,
-                }}
-              />
-            ))}
-          </div>
-          <div className="hero-dust hero-dust--right">
-            {Array.from({ length: 36 }, (_, i) => (
-              <i
-                key={`right-${i}`}
-                style={{
-                  left: `${10 + ((i * 43) % 80)}%`,
-                  top: `${(i * 61) % 96}%`,
-                  width: `${1 + (i % 2)}px`,
-                  height: `${1 + (i % 2)}px`,
-                  animationDelay: `${-(i * 0.59)}s`,
-                  animationDuration: `${8 + (i % 6)}s`,
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="hero-light-pulse hero-light-pulse--left"></div>
-          <div className="hero-light-pulse hero-light-pulse--right"></div>
-          <div className="hero-fog hero-fog--high"></div>
-          <div className="hero-fog hero-fog--back"></div>
-          <div className="hero-fog hero-fog--front"></div>
-          <div className="hero-scene__shade"></div>
+      <section className="relative mx-auto h-[78vh] min-h-[520px] max-w-7xl overflow-hidden pt-16" aria-label="Interactive particle introduction">
+        <GravitySandbox />
+        <div className="sr-only">
+          <h1>Anna Sun</h1>
+          <p>Software Engineer</p>
         </div>
-
-        <div className="relative z-10 space-y-8 max-w-2xl">
-          
-          
-          <div className="space-y-2">
-            {/* CHANGED: leading-tight instead of leading-none prevents vertical clipping */}
-            <h1 className="text-5xl md:text-8xl font-bold text-white tracking-tight leading-tight">
-              {/*<span className="block mb-2">Software</span>*/}
-              {/* CHANGED: Added Typewriter component here */}
-              {/* CHANGED: Added pb-4 (padding bottom) to give the 'g' descender space */}
-              <span className="block pb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#5a8050] via-[#FFFFFF] to-[#5a8050] animate-gradient-x drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
-                <Typewriter text="Anna Sun" delay={200} />
-              </span>
-            </h1>
-          </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#c4d4b8] text-sm font-medium animate-fade-in-up animate-pulse">
-            <span className="w-2 h-2 rounded-full bg-[#c4d4b8] animate-pulse"></span>
-            Software Engineer
-          </div>
-          
-          <p className="max-w-2xl text-[#8aac78] text-lg md:text-xl leading-relaxed">
-            I work across <span className="text-[#eef2ec]">data infrastructure</span>, <span className="text-[#eef2ec]">AI</span>, and <span className="text-[#eef2ec]">systems programming</span> building <span className="text-[#eef2ec]">scalable software</span> from the ground (and sometimes not) up
-            <br></br>
-            <br></br>
-            I also recently just reached a <span className="text-[#eef2ec]">v5</span> in <span className="text-[#eef2ec]">bouldering</span>, have been hopping on the <span className="text-[#eef2ec]">pickleball</span> train and have started up <span className="text-[#eef2ec]">reading</span> again in my free time.
-                  
-          </p>
-          
-          <div className="pt-8 flex flex-wrap gap-4">
-            <button onClick={() => scrollToSection('work')} className="px-8 py-4 bg-[#c4d4b8] text-black rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-              View Projects
-              <ArrowUpRight size={20} />
-            </button>
-            <button onClick={() => scrollToSection('contact')} className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-full font-bold hover:bg-white/10 transition-all duration-300">
-              Contact Me
-            </button>
-          </div>
-        </div>
-
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-600">
-          <ChevronDown size={24} />
-        </div>
-      </header>
+      </section>
 
       {/* Main Content - Added overflow-x-hidden here to prevent horizontal scrollbars from tilt cards */}
-      <main className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 space-y-40 pb-40 overflow-x-hidden text-center">
-        {/* Books Carousel (under hero, above tech stack) */}
-        <ScrollReveal>
-          <BooksCarousel />
-        </ScrollReveal>
-
-        {/* Tech Stack / Stats */}
-        <ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8 rounded-3xl bg-white/5 border border-white/5 backdrop-blur-sm **max-w-5xl mx-auto**">
-            {[
-              {
-                label: 'Languages',
-                items: 'Python (Pandas, NumPy, PyTorch), Java, C++, SQL, C, JavaScript, R',
-                icon: <Code2 className="text-[#9880b4]" />,
-              },
-              {
-                label: 'Tools & Frameworks',
-                items: 'React, Docker, Kubernetes, Node.js, GitHub, Bash, React Native, REST APIs',
-                icon: <Layers className="text-[#d4874c]" />,
-              },
-              {
-                label: 'Systems',
-                items: 'Spark, Kafka, Hadoop, Cassandra',
-                icon: <Palette className="text-[#d88878]" />,
-              },
-              {
-                label: 'Interests',
-                items: 'Bouldering, Tennis, Pickleball, Swimming, Ballet',
-                icon: <Sparkles className="text-[#708898]" />,
-              },
-            ].map((skill, i) => (
-              <div key={i} className="space-y-2 text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                  {skill.icon}
-                  <span className="font-bold text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">{skill.label}</span>
-                </div>
-                <p className="text-sm text-slate-400 font-mono">{skill.items}</p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-
+      <main className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 pb-16 overflow-x-hidden text-center">
         {/* Work Section */}
-        <section id="work">
+        <section id="work" className="hidden">
           <ScrollReveal>
             <div className="flex items-end justify-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">Selected Work</h2>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="portfolio-projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <TiltCard 
               title="IPO Momentum Trading System"
               category="Markets"
@@ -275,42 +115,9 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="grid md:grid-cols-2 gap-16 items-center">
+        {/* Experience Section */}
+        <section id="about" className="hidden">
           <ScrollReveal>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-500 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-              <div className="relative bg-black border border-white/10 rounded-2xl p-8 md:p-12 overflow-hidden">
-                <div className="absolute top-0 right-0 p-8 opacity-20">
-                  <Code2 size={120} />
-                </div>
-                <p className="text-[#c4d4b8] font-mono mb-6">Who am I?</p>
-                <h3 className="text-3xl font-bold text-white mb-6 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
-                  Software Engineer based (currently) in New York.
-                </h3>
-                <p className="text-white leading-relaxed mb-6">
-                  <ul>
-                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Major(s): Computer Science and Statistics</p></li>
-                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ School: University of Wisconsin-Madison</p></li>
-                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Hometown: Rochester, Minnesota</p></li>
-                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Roadmap: web dev {"-->"} databases and systems</p></li>
-                    <br></br>
-                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Gist: I enjoy challenges (academic or not) which has allowed me many opportunities for growth and has allowed me to gain many transferable skills!</p></li>
-                    <br></br>
-                    <li><p className="text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">+ Favorite Quote: "You miss 100% of the shots you don't take"</p></li>
-
-                  </ul>
-                
-                  <br>
-                  </br>
-              
-                </p>
-                
-              </div>
-            </div>
-          </ScrollReveal>
-          
-          <ScrollReveal delay={200}>
             <div className="space-y-8">
               <div>
                 <h1 className="text-white font-bold mb-4 flex items-center gap-2 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">
@@ -390,7 +197,7 @@ across multi-region datacenters for 2,500+ active users scaling to 300,000+ IBM 
         </section>
 
         {/* Events Section */}
-        <section id="events" className="max-w-6xl mx-auto">
+        <section id="events" className="hidden">
           <ScrollReveal>
             <div className="grid md:grid-cols-2 gap-12 items-start">
               
@@ -522,67 +329,13 @@ across multi-region datacenters for 2,500+ active users scaling to 300,000+ IBM 
                 </ul>
               </div>
 
-              {/* RIGHT COLUMN: Photo Gallery */}
-              {/* sticky top-24 makes it scroll with you until the section ends */}
-              <div className="hidden md:flex flex-col gap-6 sticky top-24">
-                 
-                 {/* Photo 1 */}
-                 <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 hover:border-white/20 transition-all duration-500 rotate-1 hover:rotate-0 hover:shadow-2xl hover:shadow-[0_0_40px_rgba(0,0,0,0)]">
-                    <div className="absolute inset-0 z-10 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-                    <img 
-                      src = {citadel}
-                      alt="Coding Event" 
-                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
-                    />
-                 </div>
-
-                 {/* Photo 2 */}
-                 <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 hover:border-white/20 transition-all duration-500 -rotate-1 hover:rotate-0 hover:shadow-2xl hover:shadow-cyan-500/20">
-                    <div className="absolute inset-0 z-10 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-                    <img 
-                      src= {wacm}
-                      alt="Team Collaboration" 
-                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
-                    />
-                 </div>
-
-                 {/* Photo 3 */}
-                 <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 hover:border-white/20 transition-all duration-500 rotate-2 hover:rotate-0 hover:shadow-2xl hover:shadow-purple-500/20">
-                    <div className="absolute inset-0 z-10 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-                    <img 
-                      src={uchicago}
-                      alt="Conference" 
-                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
-                    />
-                 </div>
-
-                 {/* Photo 4 */}
-                 <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 hover:border-white/20 transition-all duration-500 -rotate-2 hover:rotate-0 hover:shadow-2xl hover:shadow-pink-500/20">
-                    <div className="absolute inset-0 z-10 bg-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay"></div>
-                    <img 
-                      src={cardinal}
-                      alt="Hackathon" 
-                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
-                    />
-                 </div>
-
-                 
-
-              </div>
             </div>
           </ScrollReveal>
         </section>
-        {/* Contact CTA */}
-        <section id="contact" className="text-center max-w-3xl mx-auto">
+        <section id="contact" className="max-w-3xl">
           <ScrollReveal>
-            <h2 className="text-5xl md:text-7xl font-bold text-[#0e1e0c] mb-8 tracking-tight drop-shadow-[0_0_6px_rgba(255,255,255,0.3)]">
-              Let's build something <br />
-              {/*<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5a8050] via-[#FFFFFF] to-[#5a8050] animate-spin">extraordinary.</span>*/}
-              <span className="bg-gradient-to-r from-[#5a8050] via-white to-[#5a8050] bg-[length:300%_300%] animate-gradient-x bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(0,0,0,0.7)]">
-                extraordinary.
-              </span>
-            </h2>
-            <div className="flex justify-center gap-6 w-full">
+            <p className="portfolio-section-label mb-6 text-sm text-neutral-500">Contact</p>
+            <div className="flex flex-wrap gap-5">
               <SocialButton icon={<Mail />} href="mailto:asun.wisc@gmail.com" label="Email" />
               <SocialButton icon={<Github />} href="https://github.com/annasun04" label="GitHub" />
               <SocialButton icon={<Linkedin />} href="https://www.linkedin.com/in/annasun04/" label="LinkedIn" />
@@ -594,8 +347,6 @@ across multi-region datacenters for 2,500+ active users scaling to 300,000+ IBM 
       <footer className="py-8 text-center text-[#5a8050] text-sm relative z-10 drop-shadow-[0_0_6px_rgba(200,200,200,0.4)]">
         <p>© 2026 Anna Sun. Crafted with React & Tailwind.</p>
       </footer>
-
-      <PortfolioGame />
 
       {/* Custom Animations */}
       <style>{`
@@ -707,7 +458,7 @@ const TiltCard: React.FC<TiltCardProps> = ({ title, category, description, color
         ref={ref}
         onMouseMove={(e) => { handleMouseMove(e); setIsHovered(true); }}
         onMouseLeave={handleMouseLeave}
-        className="relative h-full bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 transition-all duration-200 ease-out group overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/20 hover:border-white/20"
+        className="portfolio-project-card relative h-full bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 transition-all duration-200 ease-out group overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/20 hover:border-white/20"
         style={{ transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale(${isHovered ? 1.02 : 1})` }}
       >
         <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>

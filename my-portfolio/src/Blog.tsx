@@ -24,6 +24,7 @@ type FireflyTrailPoint = {
 };
 
 const BLOG_INTRO_DURATION = 29.343;
+const BLOG_INTRO_SESSION_KEY = 'portfolio-blog-intro-seen';
 const FIREFLY_APPROACH_START = 20.25;
 const FIREFLY_FRIENDS_REVEAL = 22.45;
 const FIREFLY_JOIN_START = 27.15;
@@ -88,7 +89,13 @@ const Blog = () => {
   const fireflyLastTrailTimeRef = useRef(-1);
   const fireflyPreviousTimeRef = useRef(0);
   const isFinishingRef = useRef(false);
-  const [introVisible, setIntroVisible] = useState(true);
+  const [introVisible, setIntroVisible] = useState(() => {
+    try {
+      return sessionStorage.getItem(BLOG_INTRO_SESSION_KEY) !== 'true';
+    } catch {
+      return true;
+    }
+  });
   const [introStarted, setIntroStarted] = useState(false);
   const [introFading, setIntroFading] = useState(false);
   const [activeLine, setActiveLine] = useState(-1);
@@ -136,6 +143,11 @@ const Blog = () => {
   const finishIntro = () => {
     if (isFinishingRef.current) return;
     isFinishingRef.current = true;
+    try {
+      sessionStorage.setItem(BLOG_INTRO_SESSION_KEY, 'true');
+    } catch {
+      // The intro still closes normally if browser storage is unavailable.
+    }
     audioRef.current?.pause();
     cancelAnimationFrame(animationFrameRef.current);
     cancelAnimationFrame(fireflyAnimationFrameRef.current);
@@ -480,6 +492,14 @@ const Blog = () => {
       date: 'Feb 15, 2026',
       readTime: '9 min read',
       category: 'Opinion'
+    },
+    {
+      id: '8',
+      title: 'Higgsfield AI',
+      excerpt: 'Building a cinematic portfolio opening taught me where generative video shines—and where the experience needs restraint.',
+      date: 'August 24, 2026',
+      readTime: '6 min read',
+      category: 'AI/ML'
     }
   ];
 
@@ -509,7 +529,8 @@ const Blog = () => {
       '4': '/blog/4',
       '5': '/blog/5',
       '6': '/blog/6',
-      '7': '/blog/7'
+      '7': '/blog/7',
+      '8': '/blog/8'
     };
     if (routes[postId]) {
       navigate(routes[postId]);
@@ -519,7 +540,7 @@ const Blog = () => {
   return (
     <>
     <div
-      className={`relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e] ${
+      className={`blog-minimal relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e] ${
         introVisible ? 'blog-page-underlay' : 'blog-page-ready'
       }`}
       aria-hidden={introVisible}
@@ -551,7 +572,7 @@ const Blog = () => {
       <main className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-32 pb-24">
         <div className="mx-auto w-[min(100%,72rem)] space-y-12">
           <div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">my blog.</h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">blog.</h1>
             <p className="text-lg text-[#8aac78]">thoughts on experiences, technology, markets and more</p>
           </div>
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const CollegeTradingCompetitions = () => {
   return (
-    <div className="relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e]">
+    <div className="blog-minimal relative min-h-[100dvh] text-slate-300 font-sans selection:bg-[#f3ede4] selection:text-[#3a2a1e]">
       {/* Solid base background */}
       <div className="fixed inset-0 bg-[#1a3016] z-0"></div>
 
