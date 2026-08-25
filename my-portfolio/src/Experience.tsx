@@ -108,7 +108,7 @@ const ExperienceTerminal = () => {
   const [path, setPath] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const displayPath = (segments = path) => `~/experience${segments.length ? `/${segments.join('/')}` : ''}`;
+  const displayPath = (segments = path) => `~/${segments.join('/')}`;
 
   const runCommand = (rawCommand: string) => {
     const normalized = rawCommand.trim().toLowerCase();
@@ -167,14 +167,14 @@ const ExperienceTerminal = () => {
     <main className="experience-terminal" onClick={() => inputRef.current?.focus()}>
       <div className="experience-terminal__window">
         <div className="experience-terminal__heading">
-          <span>~/experience</span>
+          <span>~/</span>
           <span>interactive directory</span>
         </div>
         <div className="experience-terminal__body" aria-live="polite">
           <p className="experience-terminal__muted">type ls, cd &lt;directory&gt;, cat &lt;file&gt;, or whoami</p>
           {entries.map((entry, entryIndex) => (
             <div className="experience-terminal__entry" key={`${entry.command}-${entryIndex}`}>
-              <p><span>anna@portfolio:{entry.path} $</span> {entry.command}</p>
+              <p><span>anna@portfolio:{entry.path}$</span> {entry.command}</p>
               {entry.output.map((line, lineIndex) => <p key={`${line}-${lineIndex}`}>{line}</p>)}
             </div>
           ))}
@@ -182,7 +182,7 @@ const ExperienceTerminal = () => {
             className="experience-terminal__prompt"
             onSubmit={(event) => { event.preventDefault(); runCommand(command); }}
           >
-            <label htmlFor="experience-command">anna@portfolio:{displayPath()} $</label>
+            <label htmlFor="experience-command">anna@portfolio:{displayPath()}$</label>
             <input
               ref={inputRef}
               id="experience-command"
