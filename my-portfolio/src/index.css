@@ -344,8 +344,8 @@ html.home-route body::-webkit-scrollbar-thumb {
 .experience-minimal ul li p { margin-bottom: 0.25rem !important; color: #aaa !important; }
 .experience-minimal ul li p:first-of-type { color: #fff !important; }
 .experience-minimal section img {
-  filter: grayscale(1) !important;
-  opacity: 0.75 !important;
+  filter: none !important;
+  opacity: 1 !important;
 }
 .experience-minimal section img:hover { opacity: 1 !important; }
 .experience-minimal section [class*="rotate-"] {

@@ -4,7 +4,7 @@ import { incrementVisitCounter } from './visitCounter';
 type Grain = { x: number; y: number; vx: number; vy: number; tx: number; ty: number; size: number; phase: number; bound: boolean };
 type Point = { x: number; y: number };
 const GRAIN_COUNT = 36000;
-const WELCOME_GRAIN_COUNT = 14000;
+const WELCOME_GRAIN_COUNT = 0;
 let homeHasMountedInThisPage = false;
 
 const GravitySandbox = () => {
@@ -70,16 +70,22 @@ const GravitySandbox = () => {
       if (!maskContext) return [] as Point[];
       const longest = Math.max(...lines.map((line) => line.length), 1);
       const baseSize = Math.min(height / (lines.length * 2.15), width / Math.max(5.5, longest * 0.58));
-      const mainSize = Math.max(28, Math.min(128, baseSize));
+      const isWelcome = lines.length === 1 && lines[0] === 'Welcome!';
+      const mainSize = Math.max(28, Math.min(isWelcome ? 190 : 128, baseSize * (isWelcome ? 1.22 : 1)));
       const lineGap = mainSize * 1.18;
       const totalHeight = lineGap * (lines.length - 1);
       maskContext.fillStyle = '#fff';
+      maskContext.strokeStyle = '#fff';
       maskContext.textAlign = 'center';
       maskContext.textBaseline = 'middle';
       lines.forEach((line, index) => {
         const isInfoDisplay = lines[0]?.startsWith('You are in ') || lines[0] === 'Local time';
         const size = index === 0 ? mainSize : Math.max(24, mainSize * (isInfoDisplay ? 0.82 : 0.72));
         maskContext.font = `400 ${size}px "IBM Plex Sans", "Noto Sans", sans-serif`;
+        if (isWelcome) {
+          maskContext.lineWidth = Math.max(2, size * 0.045);
+          maskContext.strokeText(line, width / 2, height / 2 - totalHeight / 2 + index * lineGap);
+        }
         maskContext.fillText(line, width / 2, height / 2 - totalHeight / 2 + index * lineGap);
       });
       const pixels = maskContext.getImageData(0, 0, mask.width, mask.height).data;
@@ -237,9 +243,7 @@ const GravitySandbox = () => {
         let initialPoints = scatterTargets();
         if (returningInSessionRef.current) {
           permanentWelcomeTargets = textTargets(['Welcome!']);
-          const field = uniformTargets(GRAIN_COUNT + WELCOME_GRAIN_COUNT);
-          initialPoints = Array.from({ length: GRAIN_COUNT + WELCOME_GRAIN_COUNT }, (_, index) =>
-            index < GRAIN_COUNT ? permanentWelcomeTargets![index] : field[index]);
+          initialPoints = permanentWelcomeTargets;
           welcomeGrainsAdded = true;
         }
         grains = initialPoints.map((point) => ({
@@ -351,13 +355,14 @@ const GravitySandbox = () => {
       const returnStrength = currentScene === 0 ? 0.001 : currentScene === 1 ? 0.011 : currentScene === 7 ? fieldTransition * 0.012 : 0.015;
       for (let grainIndex = 0; grainIndex < grains.length; grainIndex += 1) {
         const grain = grains[grainIndex];
-        const targetX = grain.tx + (grain.bound ? Math.cos(now * 0.0017 + grain.phase) * 0.8 : 0);
-        const targetY = grain.ty + (grain.bound ? Math.sin(now * 0.0014 + grain.phase) * 0.8 : 0);
+        const targetWobble = grain.bound && !returningInSessionRef.current ? 0.8 : 0;
+        const targetX = grain.tx + Math.cos(now * 0.0017 + grain.phase) * targetWobble;
+        const targetY = grain.ty + Math.sin(now * 0.0014 + grain.phase) * targetWobble;
         const targetDx = targetX - grain.x;
         const targetDy = targetY - grain.y;
         const targetDistance = Math.max(1, Math.hypot(targetDx, targetDy));
         const grainStrength = currentScene === 7
-          ? grainIndex < GRAIN_COUNT ? 0.012 : returnStrength
+          ? grainIndex < GRAIN_COUNT ? 0 : returnStrength
           : grain.bound ? returnStrength : 0.00045;
         grain.vx += targetDx * grainStrength * delta;
         grain.vy += targetDy * grainStrength * delta;
@@ -382,7 +387,7 @@ const GravitySandbox = () => {
             const nearestNode = Math.round(phaseValue / Math.PI) * Math.PI;
             const radialShift = (nearestNode - phaseValue) / frequency;
             const edgeFade = Math.pow(1 - distance / influenceRadius, 0.7);
-            const force = radialShift * edgeFade * (0.0075 + plateDwell * 0.0225) * delta;
+            const force = radialShift * edgeFade * (0.009375 + plateDwell * 0.028125) * delta;
             grain.vx += (dx / distance) * force;
             grain.vy += (dy / distance) * force;
             const localDamping = Math.pow(0.72 + (1 - plateDwell) * 0.12, delta);
