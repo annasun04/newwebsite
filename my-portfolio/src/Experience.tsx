@@ -140,8 +140,6 @@ const ExperienceTerminal = () => {
       } else {
         output = [`cd: ${requested}: no such directory`];
       }
-    } else if (name === 'whoami' && argumentsList.length === 0) {
-      output = ['Anna Sun — software engineer, builder, competitor, teacher, and perpetual learner.'];
     } else if (name === 'cat') {
       const requested = argumentsList.join('-').replace(/^\.\//, '').replace(/\/$/, '');
       const match = currentNode?.kind === 'directory' && requested !== '.'
@@ -156,7 +154,7 @@ const ExperienceTerminal = () => {
             ? terminalDirectoryContents(target)
             : [`cat: ${requested}: no such file`];
     } else {
-      output = [`command not found: ${normalized}`, 'available commands: ls, cd, cat, whoami'];
+      output = [`command not found: ${normalized}`, 'available commands: ls, cd, cat'];
     }
 
     setEntries((current) => [...current, { path: displayPath(), command: rawCommand.trim(), output }]);
@@ -171,7 +169,7 @@ const ExperienceTerminal = () => {
           <span>interactive directory</span>
         </div>
         <div className="experience-terminal__body" aria-live="polite">
-          <p className="experience-terminal__muted">type ls, cd &lt;directory&gt;, cat &lt;file&gt;, or whoami</p>
+          <p className="experience-terminal__muted">type ls, cd &lt;directory&gt;, or cat &lt;file|directory&gt;</p>
           {entries.map((entry, entryIndex) => (
             <div className="experience-terminal__entry" key={`${entry.command}-${entryIndex}`}>
               <p><span>anna@portfolio:{entry.path}$</span> {entry.command}</p>
