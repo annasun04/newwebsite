@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>if (window.location.pathname === '/') document.documentElement.classList.add('home-route');</script>
+    <style>
+      html.home-route, html.home-route body { height: 100dvh; min-height: 100dvh; overflow: hidden; background: #000; color-scheme: dark; scrollbar-width: none; scrollbar-color: #000 #000; -ms-overflow-style: none; }
+      html.home-route #root { height: 100%; }
+      html.home-route::-webkit-scrollbar, html.home-route body::-webkit-scrollbar { width: 0; height: 0; background: #000; }
+      html.home-route::-webkit-scrollbar-track, html.home-route body::-webkit-scrollbar-track,
+      html.home-route::-webkit-scrollbar-thumb, html.home-route body::-webkit-scrollbar-thumb { background: #000; border-color: #000; }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet" />

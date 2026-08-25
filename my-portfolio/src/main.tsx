@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Volume2, VolumeX } from "lucide-react";
 import Portfolio from "./Portfolio";
 import Blog from "./Blog";
@@ -15,6 +15,14 @@ import HiggsfieldAI from "./HiggsfieldAI";
 import Experience from "./Experience";
 import SiteNav from "./SiteNav";
 import "./index.css";
+
+const RouteDocumentState = () => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.classList.toggle("home-route", location.pathname === "/");
+  }, [location.pathname]);
+  return null;
+};
 
 const SiteIntro = ({ children }: { children: React.ReactNode }) => {
   const targetAudioDuration = 25;
@@ -266,6 +274,7 @@ const SiteIntro = ({ children }: { children: React.ReactNode }) => {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
       <BrowserRouter>
+        <RouteDocumentState />
         <SiteNav />
         <Routes>
           <Route path="/" element={<Portfolio />} />

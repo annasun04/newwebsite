@@ -26,6 +26,38 @@ body nav:not(.site-navigation) { display: none !important; }
 
 /* Restrained editorial styling for the portfolio home page. */
 .portfolio-minimal { background: #000; color: #c7c7c7; }
+.portfolio-minimal {
+  height: 100dvh;
+  min-height: 100dvh !important;
+  display: block;
+  overflow: hidden;
+}
+.portfolio-minimal > section[aria-label="Interactive particle introduction"] {
+  height: 100dvh !important;
+  min-height: 0 !important;
+  width: 100%;
+}
+.portfolio-minimal > main {
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  bottom: 3.25rem;
+  z-index: 20;
+  padding-bottom: 0 !important;
+}
+.portfolio-minimal > footer {
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  bottom: 0.35rem;
+  z-index: 20;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.portfolio-minimal #contact > div {
+  opacity: 1 !important;
+  transform: none !important;
+}
 .portfolio-minimal nav {
   background: rgba(0, 0, 0, 0.96) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -255,13 +287,33 @@ body nav:not(.site-navigation) { display: none !important; }
 }
 
 html:has(.portfolio-minimal),
-body:has(.portfolio-minimal) {
+body:has(.portfolio-minimal),
+html.home-route,
+html.home-route body {
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #000;
+  color-scheme: dark;
   scrollbar-width: none;
+  scrollbar-color: #000 #000;
   -ms-overflow-style: none;
 }
+html.home-route #root { height: 100%; }
 html:has(.portfolio-minimal)::-webkit-scrollbar,
-body:has(.portfolio-minimal)::-webkit-scrollbar {
-  display: none;
+body:has(.portfolio-minimal)::-webkit-scrollbar,
+html.home-route::-webkit-scrollbar,
+html.home-route body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: #000;
+}
+html.home-route::-webkit-scrollbar-track,
+html.home-route body::-webkit-scrollbar-track,
+html.home-route::-webkit-scrollbar-thumb,
+html.home-route body::-webkit-scrollbar-thumb {
+  background: #000;
+  border-color: #000;
 }
 
 .experience-minimal,
@@ -435,8 +487,8 @@ body:has(.portfolio-minimal)::-webkit-scrollbar {
 .portfolio-minimal section#contact { padding-top: 0 !important; }
 .portfolio-minimal section#contact a { font-size: 0.8rem !important; }
 .portfolio-minimal footer {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
   border-top: 0 !important;
   font-size: 0.7rem !important;
 }
