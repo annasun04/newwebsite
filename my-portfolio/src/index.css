@@ -369,6 +369,93 @@ html.home-route body::-webkit-scrollbar-thumb {
 .experience-minimal section:last-of-type svg { display: none; }
 .experience-minimal section:last-of-type p { font-family: "IBM Plex Sans", sans-serif !important; font-size: 0.75rem; }
 
+.experience-view-toggle {
+  position: fixed;
+  top: 5.25rem;
+  right: 1.5rem;
+  z-index: 90;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #303030;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.88);
+  color: #999;
+  font: 400 0.7rem/1.2 "IBM Plex Sans", sans-serif;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.experience-view-toggle:hover,
+.experience-view-toggle:focus-visible {
+  color: #fff;
+  border-color: #666;
+  outline: none;
+}
+.experience-terminal {
+  min-height: 100dvh;
+  padding: 8.5rem 1.5rem 4rem;
+  background: #000;
+  cursor: text;
+}
+.experience-terminal__window {
+  width: min(100%, 68rem);
+  min-height: min(68dvh, 44rem);
+  margin: 0 auto;
+  border: 1px solid #242424;
+  background: #030303;
+}
+.experience-terminal__heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #242424;
+  color: #777;
+  font: 400 0.67rem/1.2 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+.experience-terminal__body {
+  padding: clamp(1rem, 3vw, 2rem);
+  color: #d5d5d5;
+  font: 400 clamp(0.72rem, 1.4vw, 0.84rem)/1.75 "IBM Plex Mono", ui-monospace, monospace;
+}
+.experience-terminal__body p {
+  margin: 0;
+  color: inherit !important;
+  white-space: pre-wrap;
+}
+.experience-terminal__muted { color: #666 !important; }
+.experience-terminal__entry { margin-top: 1.25rem; }
+.experience-terminal__entry > p:first-child { margin-bottom: 0.35rem; color: #f2f2f2 !important; }
+.experience-terminal__entry > p:first-child span,
+.experience-terminal__prompt label { color: #888; }
+.experience-terminal__prompt {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+}
+.experience-terminal__prompt label { flex: none; }
+.experience-terminal__prompt input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #fff;
+  caret-color: #fff;
+  font: inherit;
+  padding: 0;
+}
+@media (max-width: 560px) {
+  .experience-view-toggle { top: 4.75rem; right: 1rem; }
+  .experience-terminal { padding: 8rem 0.8rem 2rem; }
+  .experience-terminal__heading span:last-child { display: none; }
+  .experience-terminal__prompt { display: block; }
+  .experience-terminal__prompt label { display: block; margin-bottom: 0.2rem; }
+  .experience-terminal__prompt input { width: 100%; }
+}
+
 /* Blog index and articles share the same quiet visual system as the portfolio. */
 .blog-minimal {
   background: #000 !important;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Code2, Layers, Palette, Sparkles } from 'lucide-react';
 import citadel from './assets/citadel_event_photo.jpg';
@@ -45,7 +45,166 @@ const projects = [
   ['Flappy Bird', 'ML', 'Evolutionary neural network agent trained via genetic algorithms to autonomously play Flappy Bird. Uses population-based mutation, fitness evaluation, and iterative selection for improving play over generations.'],
 ];
 
-const Experience = () => (
+type TerminalEntry = { path: string; command: string; output: string[] };
+type TerminalNode =
+  | { kind: 'directory'; children: Record<string, TerminalNode> }
+  | { kind: 'file'; content: string[] };
+
+const terminalFolderName = (...parts: string[]) => parts
+  .join('-')
+  .replace(/&/g, 'and')
+  .replace(/[^a-zA-Z0-9]+/g, '-')
+  .replace(/^-|-$/g, '');
+
+const terminalRoot: TerminalNode = {
+  kind: 'directory',
+  children: {
+    'selected-work': {
+      kind: 'directory',
+      children: Object.fromEntries(projects.map(([title, category, description]) => [
+        `${terminalFolderName(title, category.toLowerCase())}.txt`,
+        { kind: 'file', content: [`${title} — ${category}`, description] } satisfies TerminalNode,
+      ])),
+    },
+    experience: {
+      kind: 'directory',
+      children: Object.fromEntries(experience.map(([role, place, description]) => [
+        `${terminalFolderName(role, place.split(' · ')[0])}.txt`,
+        { kind: 'file', content: [place, description] } satisfies TerminalNode,
+      ])),
+    },
+    events: {
+      kind: 'directory',
+      children: Object.fromEntries(events.map(([name, date, detail]) => [
+        `${terminalFolderName(name, date.replace(/[^0-9–-]/g, ''))}.txt`,
+        { kind: 'file', content: [date, detail || 'Attended'] } satisfies TerminalNode,
+      ])),
+    },
+    skills: {
+      kind: 'directory',
+      children: {
+        'Languages.txt': { kind: 'file', content: ['Python, Java, C++, SQL, C, JavaScript, R'] },
+        'Tools-and-Frameworks.txt': { kind: 'file', content: ['React, Docker, Kubernetes, Node.js, GitHub, Bash, React Native, REST APIs'] },
+        'Systems.txt': { kind: 'file', content: ['Spark, Kafka, Hadoop, Cassandra'] },
+        'Interests.txt': { kind: 'file', content: ['Bouldering, Tennis, Pickleball, Swimming, Ballet'] },
+      },
+    },
+  },
+};
+
+const terminalNodeAt = (path: string[]) => path.reduce<TerminalNode | undefined>((node, segment) => {
+  if (!node || node.kind !== 'directory') return undefined;
+  return node.children[segment];
+}, terminalRoot);
+
+const terminalDirectoryContents = (directory: Extract<TerminalNode, { kind: 'directory' }>) =>
+  Object.entries(directory.children).flatMap(([fileName, node]) => node.kind === 'file'
+    ? [`--- ${fileName} ---`, ...node.content, '']
+    : [`--- ${fileName}/ ---`, ...terminalDirectoryContents(node), '']);
+
+const ExperienceTerminal = () => {
+  const [command, setCommand] = useState('');
+  const [entries, setEntries] = useState<TerminalEntry[]>([]);
+  const [path, setPath] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const displayPath = (segments = path) => `~/experience${segments.length ? `/${segments.join('/')}` : ''}`;
+
+  const runCommand = (rawCommand: string) => {
+    const normalized = rawCommand.trim().toLowerCase();
+    if (!normalized) return;
+    const [name, ...argumentsList] = normalized.split(/\s+/);
+    const currentNode = terminalNodeAt(path);
+    let output: string[];
+
+    if (name === 'ls' && argumentsList.length === 0) {
+      output = currentNode?.kind === 'directory'
+        ? [Object.entries(currentNode.children).map(([childName, child]) => `${childName}${child.kind === 'directory' ? '/' : ''}`).join('   ')]
+        : ['ls: current path is not a directory'];
+    } else if (name === 'cd') {
+      const requested = argumentsList.join('-').replace(/\/$/, '');
+      if (!requested || requested === '~' || requested === '/') {
+        setPath([]);
+        output = [];
+      } else if (requested === '..') {
+        setPath((current) => current.slice(0, -1));
+        output = [];
+      } else if (currentNode?.kind === 'directory') {
+        const match = Object.keys(currentNode.children).find((child) => child.toLowerCase() === requested);
+        if (match && currentNode.children[match].kind === 'directory') {
+          setPath((current) => [...current, match]);
+          output = [];
+        } else {
+          output = [`cd: ${requested}: no such directory`];
+        }
+      } else {
+        output = [`cd: ${requested}: no such directory`];
+      }
+    } else if (name === 'whoami' && argumentsList.length === 0) {
+      output = ['Anna Sun — software engineer, builder, competitor, teacher, and perpetual learner.'];
+    } else if (name === 'cat') {
+      const requested = argumentsList.join('-').replace(/^\.\//, '').replace(/\/$/, '');
+      const match = currentNode?.kind === 'directory' && requested !== '.'
+        ? Object.keys(currentNode.children).find((child) => child.toLowerCase() === requested)
+        : undefined;
+      const target = requested === '.' ? currentNode : match && currentNode?.kind === 'directory' ? currentNode.children[match] : undefined;
+      output = !requested
+        ? ['usage: cat <file|directory>']
+        : target?.kind === 'file'
+          ? target.content
+          : target?.kind === 'directory'
+            ? terminalDirectoryContents(target)
+            : [`cat: ${requested}: no such file`];
+    } else {
+      output = [`command not found: ${normalized}`, 'available commands: ls, cd, cat, whoami'];
+    }
+
+    setEntries((current) => [...current, { path: displayPath(), command: rawCommand.trim(), output }]);
+    setCommand('');
+  };
+
+  return (
+    <main className="experience-terminal" onClick={() => inputRef.current?.focus()}>
+      <div className="experience-terminal__window">
+        <div className="experience-terminal__heading">
+          <span>~/experience</span>
+          <span>interactive directory</span>
+        </div>
+        <div className="experience-terminal__body" aria-live="polite">
+          <p className="experience-terminal__muted">type ls, cd &lt;directory&gt;, cat &lt;file&gt;, or whoami</p>
+          {entries.map((entry, entryIndex) => (
+            <div className="experience-terminal__entry" key={`${entry.command}-${entryIndex}`}>
+              <p><span>anna@portfolio:{entry.path} $</span> {entry.command}</p>
+              {entry.output.map((line, lineIndex) => <p key={`${line}-${lineIndex}`}>{line}</p>)}
+            </div>
+          ))}
+          <form
+            className="experience-terminal__prompt"
+            onSubmit={(event) => { event.preventDefault(); runCommand(command); }}
+          >
+            <label htmlFor="experience-command">anna@portfolio:{displayPath()} $</label>
+            <input
+              ref={inputRef}
+              id="experience-command"
+              value={command}
+              onChange={(event) => setCommand(event.target.value)}
+              autoComplete="off"
+              autoCapitalize="none"
+              spellCheck={false}
+              aria-label="Experience terminal command"
+              autoFocus
+            />
+          </form>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+const Experience = () => {
+  const [view, setView] = useState<'terminal' | 'page'>('terminal');
+
+  return (
   <div className="experience-minimal relative min-h-screen overflow-hidden bg-black text-[#c7c7c7] selection:bg-white selection:text-black">
 
     <nav className="fixed top-0 z-50 w-full border-b border-white/10 bg-[#050505]/95 backdrop-blur-xl">
@@ -60,6 +219,15 @@ const Experience = () => (
       </div>
     </nav>
 
+    <button
+      className="experience-view-toggle"
+      type="button"
+      onClick={() => setView((current) => current === 'terminal' ? 'page' : 'terminal')}
+    >
+      {view === 'terminal' ? 'page view' : 'terminal view'}
+    </button>
+
+    {view === 'terminal' ? <ExperienceTerminal /> : (
     <main className="relative z-10 mx-auto max-w-6xl px-6 pb-32 pt-36">
       <header className="mb-16">
         <h1 className="text-4xl font-normal tracking-tight text-white md:text-6xl">Experience</h1>
@@ -140,7 +308,9 @@ const Experience = () => (
         </div>
       </section>
     </main>
+    )}
   </div>
-);
+  );
+};
 
 export default Experience;
