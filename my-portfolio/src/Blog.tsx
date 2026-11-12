@@ -524,7 +524,7 @@ const Blog = () => {
       title: 'sf 11-12-2026',
       excerpt: 'Notes from conversations, startup culture, and figuring out what I want my reality to be in San Francisco.',
       date: 'November 12, 2026',
-      readTime: '7 min read',
+      readTime: '8 min read',
       category: 'Experiences'
     }
   ];
