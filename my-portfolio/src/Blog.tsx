@@ -518,6 +518,14 @@ const Blog = () => {
       date: 'August 24, 2026',
       readTime: '6 min read',
       category: 'AI/ML'
+    },
+    {
+      id: '9',
+      title: 'sf 11-12-2026',
+      excerpt: 'Notes from conversations, startup culture, and figuring out what I want my reality to be in San Francisco.',
+      date: 'November 12, 2026',
+      readTime: '7 min read',
+      category: 'Experiences'
     }
   ];
 
@@ -548,7 +556,8 @@ const Blog = () => {
       '5': '/blog/5',
       '6': '/blog/6',
       '7': '/blog/7',
-      '8': '/blog/8'
+      '8': '/blog/8',
+      '9': '/blog/9'
     };
     if (routes[postId]) {
       navigate(routes[postId]);

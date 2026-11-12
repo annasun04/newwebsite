@@ -1,0 +1,44 @@
+import React from 'react';
+import { Calendar, Clock } from 'lucide-react';
+
+const paragraphs = [
+  `I learned from the work OS founder during a conversation at a Databricks x AIE Build All Things After Hours event. This event was a couple of lightning talks about AI and how they're using it within their prospective companies, or just topics in general. At some point I find myself going to the terrace, which is very lively and has a beautiful view of the lit-up bridge in San Francisco. I got to the very end and I see these two people talking. I asked to join and I pulled up a chair. What I didn't know was that one of them is the founder of WorkOS. A couple of the topics that he went over across probably an hour or so were a lot of cool things that gave a look inside the startup scene and just the Silicon Valley scene in general. I'll list a couple of the things from the top of my head that I can remember and I'll iterate and add on any more. One thing he mentioned was how VC is really structured. They're not really taking companies that would do well with a good percentage of succeeding at that, but with a high or low percentage of something really completely game-changing. The expected value of, say, disrupting a business, even at a very low percentage, is higher. Only the top 10% of VCs actually make any money. The median actually lose money and let's say 1 out of 50 in the fund will actually make any money.`,
+  `Also he mentioned that the startup scene is really kind of like a tide. He used a surfer analogy where you kind of have to be in the right place at the right time but when a wave comes you're really just riding the wave.`,
+  `He found that even the smartest people he knew that were working on the hardest problems were achieving less success than smarter people were doing while working on really dumb things or things that have already been done. He defined a startup or a business as really taking something that's already there and really it's just more about application rather than creation. The other girl that was sitting there was, I believe, from Amsterdam. She was really looking for investors or really a good footing on how to get started with her two other co-founders on this idea of something similar to Ground Truth. She wanted the ability to make money but also the ability to keep something small and "beautiful," which I assume is just a good moral compass.`,
+  `Her idea was really creating this dataset where, I guess, you could have royalty if you own that piece of data, but really structuring data that is currently unstructured. Since the data can't be flattened, you take, I guess, two cruxes and make a decision out of that. Definitely a bit more mathematical backing but I think what was interesting was her want for this.`,
+  `It was a realistic push and pull: you can't say that you are going to sell the hedge funds and then decide later that, "Oh no, but I want to do something good and I'll pivot and it'll be a decentralized dataset." It's like saying you're only going to do it for a little bit but the end goal, you won't.`,
+  `He was reading a book in the middle of one called Intolerable. It's about how you set up your company in a way, if that is the goal, when your interests diverge. Essentially when your funding and your actual idea diverge more like compasses, it just doesn't work. They need to be on the same path or else they don't really live in harmony.`,
+  `He also talked a little bit about angel investors: the best angel investors are the ones that are actually really busy. They don't really have time to really care too much about it. It's more about donation because I guess it is a status symbol here in Silicon Valley and SF that you're able to give out money without really expecting anything back. You're kind of doing your part in giving back.`,
+  `He mentioned that the best angel investors are really the ones that are current CEOs, busy with their own business, but give you agency to do what you want. I found that was pretty interesting. You don't really want the retired ones. I'm kind of bored and they're going to have a lot of say over what you do or have a lot of stipulations. I think it's super interesting.`,
+  `His path was that he had a company, he sold it, and that gave him a couple years to think of the next best thing, which became WorkOS. It is now valued at 2 billion as of current November 2026. I think it's super cool.`,
+  `His advice for me specifically was to go work at Goldman for like 2 years, come back, and maybe work in a biz ops role or something to really get to know the company and really pivot pretty quickly. Just really awesome stuff.`,
+  `This morning I just woke up being so grateful, I guess, to be in SF and really figuring out what's realistic and what I want my reality to be, and the extent of that. I think those are really important considerations to decide what direction I should take now or what I should work toward, even though that's almost certainly going to be changed in a couple of years. I think, personally, I don't necessarily see myself in a specific spot or role in the next couple years but I think I have more of a picture of myself: what type of person I want to be. I want to be boss-spoken and really be the one for people to go to when they need something specific or something that I can really help out with.`,
+  `I really just have, I think, increased confidence in my ability to do things, which I think everyone is really working on. It's obviously not a bad thing to keep on working on and really figure out what my value is and how to exactly measure that. Is that in terms of how much impact I'm making, in what type of way, and in what direction? I think they're all kind of hard questions. If it was easy questions it would be done right away.`,
+  `I'm just going to figure out also just the timeline of my life: if I want kids what does that look like within the mix?`,
+  `Coming to SF, I think the first week was really just the GitHub Universe conference so I wasn't really thinking too much about that. The second week was, I guess, a bit more social and I think it was about realizing to be really careful around the people in SF: really understand what type of person they are and how genuine they are. I think that's, for me, my biggest indicator and you can sense those things right away.`,
+  `I think especially after you get so many reps in, which you do a lot here in SF, you really get to understand what people are after, what types of people they are, and a little bit if they're trustworthy or not. Obviously you don't know for 100% sure but you get a pretty good feeling about all of that.`,
+  `I think I need to really start thinking about not just what type of person I am showing up as, but how that can be of value to other people. I do want to bring value to other people and really help them as well.`,
+];
+
+const SFNovember = () => (
+  <div className="blog-minimal relative min-h-[100dvh] bg-black text-slate-300 font-sans selection:bg-white selection:text-black">
+    <main className="relative z-10 w-full pb-24 pt-32">
+      <article className="mx-auto w-[min(100%,72rem)] space-y-8 px-4 sm:px-6 lg:px-10 xl:px-12">
+        <div className="space-y-6">
+          <div className="inline-block border border-white/10 px-3 py-1 text-xs text-neutral-400">Experiences</div>
+          <h1 className="text-4xl leading-tight text-white md:text-5xl">sf 11-12-2026</h1>
+          <div className="flex flex-wrap gap-6 text-sm text-neutral-500">
+            <div className="flex items-center gap-2"><Calendar size={16} /><span>11-12-2026</span></div>
+            <div className="flex items-center gap-2"><Clock size={16} /><span>7 min read</span></div>
+          </div>
+        </div>
+
+        <div className="w-full max-w-none space-y-8 text-base leading-[1.85] text-neutral-300 md:text-lg">
+          {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+        </div>
+      </article>
+    </main>
+  </div>
+);
+
+export default SFNovember;
