@@ -13,6 +13,7 @@ import TwentyOne from "./TwentyOne";
 import CollegeCourseMap from "./CollegeCourseMap";
 import HiggsfieldAI from "./HiggsfieldAI";
 import SFNovember from "./SFNovember";
+import SFNovember17 from "./SFNovember17";
 import Experience from "./Experience";
 import SiteNav from "./SiteNav";
 import "./index.css";
@@ -289,6 +290,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/blog/7" element={<CollegeCourseMap />} />
           <Route path="/blog/8" element={<HiggsfieldAI />} />
           <Route path="/blog/9" element={<SFNovember />} />
+          <Route path="/blog/10" element={<SFNovember17 />} />
           <Route path="/experience" element={<Experience />} />
         </Routes>
       </BrowserRouter>
